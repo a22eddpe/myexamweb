@@ -1,3 +1,40 @@
 h1{
   font-size: 25px;
 }
+
+body {
+  font-family: Arial, sans-serif;
+}
+.nav {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+.dropdown {
+  position: relative;
+}
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  color: black;
+  display: none;
+  flex-direction: column;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.dropdown-menu a {
+  padding: 10px;
+  display: block;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}

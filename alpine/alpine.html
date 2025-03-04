@@ -1,19 +1,73 @@
 <!DOCTYPE html>
 <html lang="sv">
 
-<head>
-  <title>Alpine.js</title>
-  <meta charset="UTF-8">
-  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="alpinestyle.css">
-</head>
+  <head>
+    <title>Alpine.js</title>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="alpinestyle.css">
+  </head>
 
-	<body>
+  <body>
     <h1 x-data="{ message: 'Hälsokompassen' }" x-text="message"></h1>
-    <div x-data="{ count: 0 }">
-      <button @click="count++">Klicka mig</button>
-      <p>Antal klick: <span x-text="count"></span></p>
-  </div>
-	</body>
+    <nav class="nav">
+      <div x-data="{ open: false }" class="dropdown">
+        <button @click="open = !open">Boka tid ▼</button>
+        <div x-show="open" @click.away="open = false" class="dropdown-menu">
+          <a href="#">Tjänster</a>
+          <a href="#">Blogg</a>
+          <a href="#">Support</a>
+        </div>
+      </div>
+      <div x-data="{ open: false }" class="dropdown">
+        <button @click="open = !open">Bokningar ▼</button>
+        <div x-show="open" @click.away="open = false" class="dropdown-menu">
+          <a href="#">Tjänster</a>
+          <a href="#">Blogg</a>
+          <a href="#">Support</a>
+        </div>
+      </div>
+      <div x-data="{ open: false }" class="dropdown">
+        <button @click="open = !open">Förnya recept ▼</button>
+        <div x-show="open" @click.away="open = false" class="dropdown-menu">
+          <a href="#">Tjänster</a>
+          <a href="#">Blogg</a>
+          <a href="#">Support</a>
+        </div>
+      </div>
+      <div x-data="{ open: false }" class="dropdown">
+        <button @click="open = !open">Olika sjukdomar ▼</button>
+        <div x-show="open" @click.away="open = false" class="dropdown-menu">
+          <a href="#">Tjänster</a>
+          <a href="#">Blogg</a>
+          <a href="#">Support</a>
+        </div>
+      </div>
+      <div x-data="{ open: false }" class="dropdown">
+        <button @click="open = !open">Få ett läkarintyg ▼</button>
+        <div x-show="open" @click.away="open = false" class="dropdown-menu">
+          <a href="#">Tjänster</a>
+          <a href="#">Blogg</a>
+          <a href="#">Support</a>
+        </div>
+      </div>
+      <div x-data="{ open: false }" class="dropdown">
+        <button @click="open = !open">Våra vårdcentraler ▼</button>
+        <div x-show="open" @click.away="open = false" class="dropdown-menu">
+          <a href="#">Tjänster</a>
+          <a href="#">Blogg</a>
+          <a href="#">Support</a>
+        </div>
+      </div>
+      <div x-data="{ open: false }" class="dropdown">
+        <button @click="open = !open">Kontakta oss ▼</button>
+        <div x-show="open" @click.away="open = false" class="dropdown-menu">
+          <a href="#">Tjänster</a>
+          <a href="#">Blogg</a>
+          <a href="#">Support</a>
+        </div>
+      </div>
+    </nav>
+  </body>
 </html>
