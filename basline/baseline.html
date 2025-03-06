@@ -1,63 +1,167 @@
 <!DOCTYPE html>
 <html lang="sv">
 
-<head>
-  <title>Basline</title>
-  <meta charset="UTF-8">
-  <script src="java.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="baselinestyle.css">
-</head>
+  <head>
+    <title>Basline</title>
+    <meta charset="UTF-8">
+    <script src="java.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="baselinestyle.css">
+  </head>
 
-<nav class="sidebar">
-  <a href="#">Boka tid</a>
+  <body onload="setupHistory(); showpage('hem', false); checkLocalStorage();">
 
-  <div class="dropdown">
-    <button class="dropdown-btn">Bokningar ▼</button>
-    <div class="dropdown-menu">
-        <a href="#">Se bokningar</a>
-        <a href="#">Avboka</a>
+    <div id="banner">
+      <h3>Vårdkompassen</h3>
     </div>
-</div>
 
-<div class="dropdown">
-    <button class="dropdown-btn">Olika sjukdomar ▼</button>
-    <div class="dropdown-menu">
-        <a href="#">Virus</a>
-        <a href="#">Muskelvärk</a>
-        <a href="#">Förkylning</a>
-        <a href="#">Allergi</a>
+    <div id="navbar">
+
+        <button onclick="showpage('bokatid', true);"><p>Boka tid</p></button>
+        
+        <div class="dropdown">
+          <button class="dropdown-btn" onclick="showpage('bokningar', true);" onmouseover="showDropdown('bokningar-menu')" onmouseout="hideDropdown('bokningar-menu')">Bokningar ▼</button>
+          <div class="dropdown-menu" id="bokningar-menu" onmouseover="showDropdown('bokningar-menu')" onmouseout="hideDropdown('bokningar-menu')">
+            <a href="#" onclick="showpage('sebokadetider', true);">Se bokade tider</a>
+            <a href="#" onclick="showpage('avokatid', true);">Avboka tid</a>
+            <a href="#" onclick="showpage('bokaomtid', true);">Boka om tid</a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropdown-btn" onclick="showpage('olikasjukdomar', true);" onmouseover="showDropdown('olikasjukdomar-menu')" onmouseout="hideDropdown('olikasjukdomar-menu')">Olika sjukdomar ▼</button>
+          <div class="dropdown-menu" id="olikasjukdomar-menu" onmouseover="showDropdown('olikasjukdomar-menu')" onmouseout="hideDropdown('olikasjukdomar-menu')">
+            <a href="#" onclick="showpage('virus', true);">Virus</a>
+            <a href="#" onclick="showpage('muskelvark', true);">Muskelvärk</a>
+            <a href="#" onclick="showpage('forkylning', true);">Förkylning</a>
+            <a href="#" onclick="showpage('allergi', true);">Allergi</a>
+          </div>
+        </div>
+
+      <button onclick="showpage('fornyarecept', true);"><p>Förnya recept</p></button>
+      <button onclick="showpage('skaffalakarintyg', true);"><p>Skaffa läkarintyg</p></button>
+
+      <div class="dropdown">
+        <button class="dropdown-btn" onclick="showpage('vardcentraler', true);" onmouseover="showDropdown('vardcentraler-menu')" onmouseout="hideDropdown('vardcentraler-menu')">Våra vårdcentraler ▼</button>
+        <div class="dropdown-menu" id="vardcentraler-menu" onmouseover="showDropdown('vardcentraler-menu')" onmouseout="hideDropdown('vardcentraler-menu')">
+          <a href="#" onclick="showpage('skovde', true);">Skövde</a>
+          <a href="#" onclick="showpage('goteborg', true);">Göteborg</a>
+          <a href="#" onclick="showpage('stockholm', true);">Stockholm</a>
+          <a href="#" onclick="showpage('malmo', true);">Malmö</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropdown-btn" onclick="showpage('kontakta', true);" onmouseover="showDropdown('kontakta-menu')" onmouseout="hideDropdown('kontakta-menu')">Kontakta oss ▼</button>
+        <div class="dropdown-menu" id="kontakta-menu" onmouseover="showDropdown('kontakta-menu')" onmouseout="hideDropdown('kontakta-menu')">
+          <a href="#" onclick="showpage('mail', true);">Mail</a>
+          <a href="#" onclick="showpage('chatta', true);">Chatta</a>
+          <a href="#" onclick="showpage('telefon', true);">Telefon</a>
+        </div>
+      </div>
+
+      <button onclick="showpage('omoss', true);"><p>Om oss</p></button>
     </div>
-</div>
 
-<a href="#">Förnya recept</a>
-<a href="#">Skaffa läkarintyg</a>
+    <div id="hem" class="page">
+      <h1>Vårdkompassen</h1>
 
-<div class="dropdown">
-  <button class="dropdown-btn">Våra vårdcentraler ▼</button>
-  <div class="dropdown-menu">
-      <a href="#">Skövde</a>
-      <a href="#">Göteborg</a>
-      <a href="#">Stockholm</a>
-      <a href="#">Malmö</a>
-  </div>
-</div>
+      <div class="hem">
+        <div class="texthem">
+          <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus corrupti ab rerum, a sequi voluptas fugiat nam quis sit harum fuga qui nihil voluptatibus soluta explicabo porro quae beatae vitae.</h2>
+        </div>
+      </div>
+    </div>
 
-<div class="dropdown">
-  <button class="dropdown-btn">Kontakta oss ▼</button>
-  <div class="dropdown-menu">
-      <a href="#">Mail</a>
-      <a href="#">Chatta</a>
-      <a href="#">Telefon</a>
-  </div>
-</div>
+    <div id="bokatid" class="page">
+      <h1>Boka Tid</h1>
+      <div class="text">
+        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus corrupti ab rerum, a sequi voluptas fugiat nam quis sit harum fuga qui nihil voluptatibus soluta explicabo porro quae beatae vitae.</h2>
+      </div>
+    </div>
 
-<a href="#">Om oss</a>
-</nav>
+    <div id="bokningar" class="page">
+      <h1>Bokningar</h1>
+      <div class="text">
+        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus corrupti ab rerum, a sequi voluptas fugiat nam quis sit harum fuga qui nihil voluptatibus soluta explicabo porro quae beatae vitae.</h2>
+      </div>
+    </div>
 
-<!-- Huvudinnehåll -->
-<div class="content">
-<h1>Välkommen till Vårdkompassen</h1>
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, maiores omnis. Quo mollitia, ab facere eos assumenda magni ea nam nulla possimus necessitatibus dignissimos doloribus ad sint laboriosam nihil. Voluptas!</p>
-</div>
+    <div id="olikasjukdomar" class="page">
+      <h1>Olika sjukdomar</h1>
+      <div class="text">
+        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus corrupti ab rerum, a sequi voluptas fugiat nam quis sit harum fuga qui nihil voluptatibus soluta explicabo porro quae beatae vitae.</h2>
+      </div>
+    </div>
+
+    <div id="fornyarecept" class="page">
+      <h1>Förnya recept</h1>
+      <div class="text">
+        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus corrupti ab rerum, a sequi voluptas fugiat nam quis sit harum fuga qui nihil voluptatibus soluta explicabo porro quae beatae vitae.</h2>
+      </div>
+    </div>
+
+    <div id="skaffalakarintyg" class="page">
+      <h1>Skaffa läkarintyg</h1>
+      <div class="text">
+        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus corrupti ab rerum, a sequi voluptas fugiat nam quis sit harum fuga qui nihil voluptatibus soluta explicabo porro quae beatae vitae.</h2>
+      </div>
+    </div>
+
+    <div id="vardcentraler" class="page">
+      <h1>Våra vårdcentraler</h1>
+      <div class="text">
+        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus corrupti ab rerum, a sequi voluptas fugiat nam quis sit harum fuga qui nihil voluptatibus soluta explicabo porro quae beatae vitae.</h2>
+      </div>
+    </div>
+
+    <div id="kontakta" class="page">
+      <h1>Kontakta oss</h1>
+      <div class="text">
+        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus corrupti ab rerum, a sequi voluptas fugiat nam quis sit harum fuga qui nihil voluptatibus soluta explicabo porro quae beatae vitae.</h2>
+      </div>
+    </div>
+
+    <div id="omoss" class="page">
+      <h1>Om oss</h1>
+      <div class="text">
+        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus corrupti ab rerum, a sequi voluptas fugiat nam quis sit harum fuga qui nihil voluptatibus soluta explicabo porro quae beatae vitae.</h2>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      function showDropdown(id) {
+        document.getElementById(id).style.display = "flex";
+      }
+
+      function hideDropdown(id) {
+        document.getElementById(id).style.display = "none";
+      }
+
+      function showpage(pageid, lastpage){
+        var pages = document.getElementsByClassName("page");
+        for(page of pages){
+          page.style.display="none";
+        }
+        document.getElementById(pageid).style.display="block";
+        if(lastpage){
+          updateHistory(pageid);
+        }
+      }   
+
+      function historyChange(event){
+        showpage(event.state, false);
+      }    
+
+      function updateHistory(token){
+        history.pushState(token, "Titel: "+token, "");
+      }
+
+      function setupHistory(){ 
+        window.onpopstate = function(event) { historyChange(event); };
+      }
+    </script>
+
+  </body>
 </html>
