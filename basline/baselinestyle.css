@@ -24,6 +24,10 @@ body {
   z-index: 1000; /* Ser till att bannern alltid ligger över andra element */
 }
 
+.explore {
+  fill: #fff;
+}
+
 /* H1 och H2 styling */
 h1 {
   margin-left: 28px;
