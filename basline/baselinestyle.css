@@ -106,22 +106,38 @@ h3 {
 }
 
 /* Dropdown-container */
+/* Dropdown container */
 .dropdown {
   position: relative;
-  width: 290px; /* Samma bredd som knapparna */
+  width: 290px; /* Bredd på knappen */
 }
 
-/* Dropdown-meny */
+/* Dropdown-knappen */
+.dropdown-btn {
+  background-color: #396291;
+  color: white;
+  border: none;
+  padding: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%; /* Knappen tar hela bredden */
+}
+
+/* Dropdown-meny (visas till höger) */
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 100%;
-  left: 0;
+  top: 0;
+  left: 100%; /* Flyttar menyn till höger om knappen */
   background-color: #eff5f8;
   flex-direction: column;
-  width: 290px; /* Samma bredd som knapparna */
+  width: 200px; /* Anpassad bredd för menyn */
   border: 1px solid #9e9fa4;
   z-index: 100;
+  white-space: nowrap; /* Förhindrar att text bryts */
 }
 
 /* Dropdown-länkar */
@@ -130,17 +146,16 @@ h3 {
   color: #396291;
   text-decoration: none;
   display: block;
-  text-align: center;
+  text-align: left;
   font-weight: bold;
   border-bottom: 1px solid #9e9fa4;
 }
 
-/* Hover-effekt för dropdown-länkar */
 .dropdown-menu a:hover {
-  background-color: #d5eaf5;
+  background-color: #d9e3f0;
 }
 
-/* Visa dropdown-meny vid hover */
+/* Visa dropdown vid hover */
 .dropdown:hover .dropdown-menu {
   display: flex;
 }
