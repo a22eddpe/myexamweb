@@ -42,8 +42,14 @@ body {
   margin-bottom: 10px;
 }
 
-.explore {
-  fill: #fff;
+.icon-container {
+  display: flex;
+  flex-direction: column; /* Staplar ikonen och texten vertikalt */
+  align-items: center; /* Centrerar innehållet */
+  text-align: center;
+  font-size: 14px; /* Justera textstorlek */
+  color: white;
+  font-family: 'Noto Sans';
 }
 
 /* H1 och H2 styling */
