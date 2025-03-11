@@ -11,17 +11,35 @@ body {
 #banner {
   background-color: #2a92c2;
   color: #fff;
-  position: fixed; /* Fixerar bannern högst upp */
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100vw; /* Gör bannern hela skärmbredden */
-  height: 80px; /* Höjd på bannern */
-  display: flex; /* Använder flexbox för att centrera texten */
-  align-items: center; /* Centrerar texten vertikalt */
-  justify-content: center; /* Centrerar texten horisontellt */
+  width: 100vw;
+  height: 80px;
+  display: flex;
+  align-items: center; /* Centrerar vertikalt */
+  padding: 0 20px; /* Lägger till padding för luft */
   font-size: 24px;
   font-weight: bold;
-  z-index: 1000; /* Ser till att bannern alltid ligger över andra element */
+  z-index: 1000;
+}
+
+/* Centrera texten korrekt */
+.bannertext {
+  flex-grow: 1; /* Tar upp allt tillgängligt utrymme */
+  display: flex;
+  justify-content: center; /* Centrerar texten horisontellt */
+  align-items: center;
+  gap: 20px; /* Mellanrum mellan ikon och text */
+}
+
+/* Justera ikonerna till höger */
+.bannericon {
+  display: flex;
+  gap: 25px; /* Mellanrum mellan ikonerna */
+  margin-left: auto; /* Skjuter den till höger */
+  margin-right: 40px;
+  margin-bottom: 10px;
 }
 
 .explore {
