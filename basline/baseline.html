@@ -12,13 +12,13 @@
   <body onload="setupHistory(); showpage('hem', false); checkLocalStorage();">
 
     <div id="banner">
-      <img class="explore" src="explore_60dp_FFF_FILL0_wght400_GRAD0_opsz48.svg"/>
+      <img class="explore" src="icons/explore_60dp_FFF_FILL0_wght400_GRAD0_opsz48.svg"/>
       <h3>Vårdkompassen</h3>
     </div>
 
     <div id="navbar">
 
-        <button onclick="showpage('bokatid', true);"><p>Boka tid</p></button>
+        <button onclick="showpage('bokatid', true);"><img class="schedule" src="icons/schedule_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/><p>Boka tid</p></button>
         
         <div class="dropdown">
           <button class="dropdown-btn" onclick="showpage('bokningar', true);" onmouseover="showDropdown('bokningar-menu')" onmouseout="hideDropdown('bokningar-menu')">Bokningar ▼</button>
