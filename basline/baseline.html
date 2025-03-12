@@ -11,6 +11,7 @@
 
   <body onload="setupHistory(); showpage('hem', false); checkLocalStorage();">
 
+    <!--BANNER-->
     <div id="banner">
       <div class="bannertext">
         <img class="explore" src="icons/explore_60dp_FFF_FILL0_wght400_GRAD0_opsz48.svg"/>
@@ -34,28 +35,34 @@
 
     <div id="navbar">
 
-        <button onclick="showpage('bokatid', true);"><img class="schedule" src="icons/schedule_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/><p>Boka tid</p></button>
-        
-        <div class="dropdown">
-          <button class="dropdown-btn" onclick="showpage('bokningar', true);" onmouseover="showDropdown('bokningar-menu')" onmouseout="hideDropdown('bokningar-menu')"><img class="calender" src="icons/calendar_month_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Bokningar ▼</button>
-          <div class="dropdown-menu" id="bokningar-menu" onmouseover="showDropdown('bokningar-menu')" onmouseout="hideDropdown('bokningar-menu')">
-            <a href="#" onclick="showpage('sebokadetider', true);">Se bokade tider</a>
-            <a href="#" onclick="showpage('avokatid', true);">Avboka tid</a>
-            <a href="#" onclick="showpage('bokaomtid', true);">Boka om tid</a>
-          </div>
+      <!--BOKA TID-->
+      <button onclick="showpage('bokatid', true);"><img class="schedule" src="icons/schedule_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/><p>Boka tid</p></button>
+      
+      <!--BOKNINGAR-->
+      <div class="dropdown">
+        <button class="dropdown-btn" onclick="showpage('bokningar', true);" onmouseover="showDropdown('bokningar-menu')" onmouseout="hideDropdown('bokningar-menu')"><img class="calender" src="icons/calendar_month_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Bokningar ▼</button>
+        <div class="dropdown-menu" id="bokningar-menu" onmouseover="showDropdown('bokningar-menu')" onmouseout="hideDropdown('bokningar-menu')">
+          <a href="#" onclick="showpage('sebokadetider', true);">Se bokade tider</a>
+          <a href="#" onclick="showpage('avokatid', true);">Avboka tid</a>
+          <a href="#" onclick="showpage('bokaomtid', true);">Boka om tid</a>
         </div>
+      </div>
 
-        <div class="dropdown">
-          <button class="dropdown-btn" onclick="showpage('olikasjukdomar', true);" onmouseover="showDropdown('olikasjukdomar-menu')" onmouseout="hideDropdown('olikasjukdomar-menu')"><img class="microbiology" src="icons/microbiology_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Olika sjukdomar ▼</button>
-          <div class="dropdown-menu" id="olikasjukdomar-menu" onmouseover="showDropdown('olikasjukdomar-menu')" onmouseout="hideDropdown('olikasjukdomar-menu')">
-            <a href="#" onclick="showpage('virus', true);">Virus</a>
-            <a href="#" onclick="showpage('muskelvark', true);">Muskelvärk</a>
-            <a href="#" onclick="showpage('forkylning', true);">Förkylning</a>
-            <a href="#" onclick="showpage('allergi', true);">Allergi</a>
-          </div>
+      <!--OLIKA SJUKDOMAR-->
+      <div class="dropdown">
+        <button class="dropdown-btn" onclick="showpage('olikasjukdomar', true);" onmouseover="showDropdown('olikasjukdomar-menu')" onmouseout="hideDropdown('olikasjukdomar-menu')"><img class="microbiology" src="icons/microbiology_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Olika sjukdomar ▼</button>
+        <div class="dropdown-menu" id="olikasjukdomar-menu" onmouseover="showDropdown('olikasjukdomar-menu')" onmouseout="hideDropdown('olikasjukdomar-menu')">
+          <a href="#" onclick="showpage('virus', true);">Virus</a>
+          <a href="#" onclick="showpage('muskelvark', true);">Muskelvärk</a>
+          <a href="#" onclick="showpage('forkylning', true);">Förkylning</a>
+          <a href="#" onclick="showpage('allergi', true);">Allergi</a>
         </div>
+      </div>
 
+      <!--FÖRNYA RECEPT-->
       <button onclick="showpage('fornyarecept', true);"><img class="prescriptions" src="icons/prescriptions_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/><p>Förnya recept</p></button>
+
+      <!--SKAFFA LÄKARINTYG-->
       <button onclick="showpage('skaffalakarintyg', true);"><img class="medicalinformation" src="icons/medical_information_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/><p>Skaffa läkarintyg</p></button>
 
       <!--VÅRA VÅRDCENTRALER-->
@@ -69,6 +76,7 @@
         </div>
       </div>
 
+      <!--KONTAKT-->
       <div class="dropdown">
         <button class="dropdown-btn" onclick="showpage('kontakta', true);" onmouseover="showDropdown('kontakta-menu')" onmouseout="hideDropdown('kontakta-menu')"><img class="permphone" src="icons/perm_phone_msg_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Kontakta oss ▼</button>
         <div class="dropdown-menu" id="kontakta-menu" onmouseover="showDropdown('kontakta-menu')" onmouseout="hideDropdown('kontakta-menu')">
@@ -78,9 +86,11 @@
         </div>
       </div>
 
+      <!--OM OSS-->
       <button onclick="showpage('omoss', true);"><img class="groups" src="icons/groups_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/><p>Om oss</p></button>
     </div>
 
+    <!--HEM PAGE-->
     <div id="hem" class="page">
       <h1>Vårdkompassen</h1>
 
@@ -91,6 +101,7 @@
       </div>
     </div>
 
+    <!--BOKA TID PAGE-->
     <div id="bokatid" class="page">
       <h1>Boka Tid</h1>
       <div class="text">
@@ -98,6 +109,7 @@
       </div>
     </div>
 
+    <!--BOKNINGAR PAGE-->
     <div id="bokningar" class="page">
       <h1>Bokningar</h1>
       <div class="text">
@@ -105,6 +117,7 @@
       </div>
     </div>
 
+    <!--OLIKA SJUKDOMAR PAGE-->
     <div id="olikasjukdomar" class="page">
       <h1>Olika sjukdomar</h1>
       <div class="text">
@@ -112,6 +125,7 @@
       </div>
     </div>
 
+    <!--FÖRNYA RECEPT PAGE-->
     <div id="fornyarecept" class="page">
       <h1>Förnya recept</h1>
       <div class="text">
@@ -119,6 +133,7 @@
       </div>
     </div>
 
+    <!--SKAFFA LÄKARINTYG PAGE-->
     <div id="skaffalakarintyg" class="page">
       <h1>Skaffa läkarintyg</h1>
       <div class="text">
@@ -126,7 +141,7 @@
       </div>
     </div>
 
-<!--VÅRA VÅRDCENTRALER-->
+    <!--VÅRA VÅRDCENTRALER PAGE-->
     <div id="vardcentraler" class="page">
       <h1>Våra vårdcentraler</h1>
       <div class="text">
@@ -141,6 +156,7 @@
       </div>
     </div>
 
+    <!--KONTAKT PAGE-->
     <div id="kontakta" class="page">
       <h1>Kontakta oss</h1>
       <div class="text">
@@ -148,6 +164,7 @@
       </div>
     </div>
 
+    <!--OM OSS PAGE-->
     <div id="omoss" class="page">
       <h1>Om oss</h1>
       <div class="text">
