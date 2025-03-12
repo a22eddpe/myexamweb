@@ -9,205 +9,110 @@
     <link rel="stylesheet" href="alpinestyle.css">
 </head>
 
-<body>
+<body x-data="{ page: window.location.hash ? window.location.hash.substring(1) : 'hem' }">
 
-    <!-- Vänster Navigeringsbar -->
+    <!-- Banner -->
+    <div id="banner">
+        <div class="bannertext">
+            <img class="explore" src="icons/explore_60dp_FFF_FILL0_wght400_GRAD0_opsz48.svg" />
+            <h3>Vårdkompassen</h3>
+        </div>
+        <div class="bannericon">
+            <div class="icon-container">
+                <img class="sync" src="icons/sync_alt_56dp_FFF_FILL0_wght400_GRAD0_opsz48.svg" />
+                <span>Personal</span>
+            </div>
+            <div class="icon-container">
+                <img class="person" src="icons/person_56dp_FFF_FILL0_wght400_GRAD0_opsz48.svg" />
+                <span>Logga in</span>
+            </div>
+            <div class="icon-container">
+                <img class="search" src="icons/search_56dp_FFF_FILL0_wght400_GRAD0_opsz48.svg" />
+                <span>Sök</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigeringsmeny -->
     <nav class="sidebar">
-        <a href="#">Boka tid</a>
+        <button @click="page = 'bokatid'; window.location.hash = 'bokatid'">Boka tid</button>
 
-        <div class="dropdown" x-data="{ open: false }">
-            <button class="dropdown-btn" @mouseenter="open = true" @mouseleave="open = false">Bokningar ▼</button>
+        <!-- Dropdown för bokningar -->
+        <div class="dropdown" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+            <button class="dropdown-btn">Bokningar ▼</button>
             <div class="dropdown-menu" x-show="open" x-transition>
-                <a href="#">Se bokningar</a>
-                <a href="#">Avboka</a>
+                <button @click="page = 'sebokadetider'; window.location.hash = 'sebokadetider'">Se bokningar</button>
+                <button @click="page = 'avokatid'; window.location.hash = 'avokatid'">Avboka</button>
             </div>
         </div>
 
-        <div class="dropdown" x-data="{ open: false }">
-            <button class="dropdown-btn" @mouseenter="open = true" @mouseleave="open = false">Olika sjukdomar ▼</button>
+        <!-- Dropdown för olika sjukdomar -->
+        <div class="dropdown" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+            <button class="dropdown-btn">Olika sjukdomar ▼</button>
             <div class="dropdown-menu" x-show="open" x-transition>
-                <a href="#">Virus</a>
-                <a href="#">Muskelvärk</a>
-                <a href="#">Förkylning</a>
-                <a href="#">Allergi</a>
+                <button @click="page = 'virus'; window.location.hash = 'virus'">Virus</button>
+                <button @click="page = 'muskelvark'; window.location.hash = 'muskelvark'">Muskelvärk</button>
+                <button @click="page = 'forkylning'; window.location.hash = 'forkylning'">Förkylning</button>
+                <button @click="page = 'allergi'; window.location.hash = 'allergi'">Allergi</button>
             </div>
         </div>
 
-        <a href="#">Förnya recept</a>
-        <a href="#">Skaffa läkarintyg</a>
+        <button @click="page = 'fornyarecept'; window.location.hash = 'fornyarecept'">Förnya recept</button>
+        <button @click="page = 'skaffalakarintyg'; window.location.hash = 'skaffalakarintyg'">Skaffa läkarintyg</button>
 
-        <div class="dropdown" x-data="{ open: false }">
-            <button class="dropdown-btn" @mouseenter="open = true" @mouseleave="open = false">Våra vårdcentraler ▼</button>
+        <!-- Dropdown för våra vårdcentraler -->
+        <div class="dropdown" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+            <button class="dropdown-btn">Våra vårdcentraler ▼</button>
             <div class="dropdown-menu" x-show="open" x-transition>
-                <a href="#">Skövde</a>
-                <a href="#">Göteborg</a>
-                <a href="#">Stockholm</a>
-                <a href="#">Malmö</a>
+                <button @click="page = 'skovde'; window.location.hash = 'skovde'">Skövde</button>
+                <button @click="page = 'goteborg'; window.location.hash = 'goteborg'">Göteborg</button>
+                <button @click="page = 'stockholm'; window.location.hash = 'stockholm'">Stockholm</button>
+                <button @click="page = 'malmo'; window.location.hash = 'malmo'">Malmö</button>
             </div>
         </div>
 
-        <div class="dropdown" x-data="{ open: false }">
-            <button class="dropdown-btn" @mouseenter="open = true" @mouseleave="open = false">Kontakta oss ▼</button>
-            <div class="dropdown-menu" x-show="open" x-transition>
-                <a href="#">Mail</a>
-                <a href="#">Chatta</a>
-                <a href="#">Telefon</a>
-            </div>
-        </div>
-
-        <a href="#">Om oss</a>
+        <button @click="page = 'omoss'; window.location.hash = 'omoss'">Om oss</button>
     </nav>
 
     <!-- Huvudinnehåll -->
     <div class="content">
-        <h1>Välkommen till Vårdkompassen</h1>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, maiores omnis. Quo mollitia, ab facere eos assumenda magni ea nam nulla possimus necessitatibus dignissimos doloribus ad sint laboriosam nihil. Voluptas!</p>
+        <div x-show="page === 'hem'">
+            <h1>Välkommen till Vårdkompassen</h1>
+        </div>
+
+        <div x-show="page === 'bokatid'">
+            <h1>Boka Tid</h1>
+        </div>
+
+        <div x-show="page === 'sebokadetider'">
+            <h1>Se Bokade Tider</h1>
+        </div>
+
+        <div x-show="page === 'avokatid'">
+            <h1>Avboka Tid</h1>
+        </div>
+
+        <div x-show="page === 'skovde'">
+            <h1>Vårdcentral Skövde</h1>
+        </div>
+
+        <div x-show="page === 'goteborg'">
+            <h1>Vårdcentral Göteborg</h1>
+        </div>
+
+        <div x-show="page === 'stockholm'">
+            <h1>Vårdcentral Stockholm</h1>
+        </div>
+
+        <div x-show="page === 'malmo'">
+            <h1>Vårdcentral Malmö</h1>
+        </div>
+
+        <div x-show="page === 'omoss'">
+            <h1>Om Oss</h1>
+        </div>
     </div>
 
 </body>
 
 </html>
-
-<!-- <!DOCTYPE html>
-<html lang="sv">
-<head>
-    <title>Dropdown Navigering</title>
-    <meta charset="UTF-8">
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body onload="setupHistory(); showpage('hem', true); validate(); checkLocalStorage()">
-
-    
-    <div id="navbar">
-        <button onclick="showpage('bokatid', true);"><p>Boka tid</p></button>
-
-      
-        <div class="dropdown" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-            <button class="dropdown-btn">Bokningar ▼</button>
-            <div class="dropdown-menu" x-show="open" x-transition>
-                <a href="#" onclick="showpage('bokningar', true);">Se bokningar</a>
-                <a href="#" onclick="showpage('avboka', true);">Avboka</a>
-            </div>
-        </div>
-
-      
-        <div class="dropdown" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-            <button class="dropdown-btn">Olika sjukdomar ▼</button>
-            <div class="dropdown-menu" x-show="open" x-transition>
-                <a href="#" onclick="showpage('virus', true);">Virus</a>
-                <a href="#" onclick="showpage('muskelvark', true);">Muskelvärk</a>
-                <a href="#" onclick="showpage('forkylning', true);">Förkylning</a>
-                <a href="#" onclick="showpage('allergi', true);">Allergi</a>
-            </div>
-        </div>
-
-        <button onclick="showpage('fornyarecept', true);"><p>Förnya recept</p></button>
-        <button onclick="showpage('skaffalakarintyg', true);"><p>Skaffa läkarintyg</p></button>
-
-        <div class="dropdown" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-            <button class="dropdown-btn">Våra vårdcentraler ▼</button>
-            <div class="dropdown-menu" x-show="open" x-transition>
-                <a href="#" onclick="showpage('skovde', true);">Skövde</a>
-                <a href="#" onclick="showpage('goteborg', true);">Göteborg</a>
-                <a href="#" onclick="showpage('stockholm', true);">Stockholm</a>
-                <a href="#" onclick="showpage('malmo', true);">Malmö</a>
-            </div>
-        </div>
-
-
-        <div class="dropdown" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-            <button class="dropdown-btn">Kontakta oss ▼</button>
-            <div class="dropdown-menu" x-show="open" x-transition>
-                <a href="#" onclick="showpage('mail', true);">Mail</a>
-                <a href="#" onclick="showpage('chatta', true);">Chatta</a>
-                <a href="#" onclick="showpage('telefon', true);">Telefon</a>
-            </div>
-        </div>
-
-        <button onclick="showpage('omoss', true);"><p>Om oss</p></button>
-    </div>
-
-</body>
-</html> -->
-
-<!-- /* Grundläggande styling */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-}
-
-/* Navigeringsfält */
-#navbar {
-  background-color: #333;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-/* Knappar */
-#navbar button, .dropdown-btn {
-  background-color: #444;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  font-size: 16px;
-  cursor: pointer;
-  text-align: center;
-}
-
-#navbar button:hover, .dropdown-btn:hover {
-  background-color: #555;
-}
-
-/* Dropdown-container */
-.dropdown {
-  position: relative;
-}
-
-/* Dropdown-meny */
-.dropdown-menu {
-  display: none; /* Styrs av Alpine.js */
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #222;
-  flex-direction: column;
-  width: 150px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Visa dropdown när Alpine.js aktiverar den */
-[x-show="open"] {
-  display: flex !important;
-  opacity: 0;
-  transform: translateY(-5px);
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-
-/* När dropdown visas */
-[x-show="open"].x-enter {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Dropdown-länkar */
-.dropdown-menu a {
-  padding: 10px;
-  color: white;
-  text-decoration: none;
-  display: block;
-  border-bottom: 1px solid #444;
-}
-
-.dropdown-menu a:hover {
-  background-color: #555;
-} -->
-
-
-
-
-

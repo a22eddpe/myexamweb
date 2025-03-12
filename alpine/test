@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <title>Alpine.js</title>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="alpinestyle.css">
+</head>
+
+<body>
+
+    <!-- Vänster Navigeringsbar -->
+    <nav class="sidebar">
+        <a href="#">Boka tid</a>
+
+        <div class="dropdown" x-data="{ open: false }">
+            <button class="dropdown-btn" @mouseenter="open = true" @mouseleave="open = false">Bokningar ▼</button>
+            <div class="dropdown-menu" x-show="open" x-transition>
+                <a href="#">Se bokningar</a>
+                <a href="#">Avboka</a>
+            </div>
+        </div>
+
+        <div class="dropdown" x-data="{ open: false }">
+            <button class="dropdown-btn" @mouseenter="open = true" @mouseleave="open = false">Olika sjukdomar ▼</button>
+            <div class="dropdown-menu" x-show="open" x-transition>
+                <a href="#">Virus</a>
+                <a href="#">Muskelvärk</a>
+                <a href="#">Förkylning</a>
+                <a href="#">Allergi</a>
+            </div>
+        </div>
+
+        <a href="#">Förnya recept</a>
+        <a href="#">Skaffa läkarintyg</a>
+
+        <div class="dropdown" x-data="{ open: false }">
+            <button class="dropdown-btn" @mouseenter="open = true" @mouseleave="open = false">Våra vårdcentraler ▼</button>
+            <div class="dropdown-menu" x-show="open" x-transition>
+                <a href="#">Skövde</a>
+                <a href="#">Göteborg</a>
+                <a href="#">Stockholm</a>
+                <a href="#">Malmö</a>
+            </div>
+        </div>
+
+        <div class="dropdown" x-data="{ open: false }">
+            <button class="dropdown-btn" @mouseenter="open = true" @mouseleave="open = false">Kontakta oss ▼</button>
+            <div class="dropdown-menu" x-show="open" x-transition>
+                <a href="#">Mail</a>
+                <a href="#">Chatta</a>
+                <a href="#">Telefon</a>
+            </div>
+        </div>
+
+        <a href="#">Om oss</a>
+    </nav>
+
+    <!-- Huvudinnehåll -->
+    <div class="content">
+        <h1>Välkommen till Vårdkompassen</h1>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, maiores omnis. Quo mollitia, ab facere eos assumenda magni ea nam nulla possimus necessitatibus dignissimos doloribus ad sint laboriosam nihil. Voluptas!</p>
+    </div>
+
+</body>
+
+</html>
+
+class
+
+/* Grundläggande styling */
+body {
+  margin: 0;
+  display: flex; /* Flexbox för att dela upp navbar och innehåll */
+    background-color: #eff5f8;
+}
+
+/* Banner */
+#banner {
+  background-color: #2a92c2;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 80px;
+  display: flex;
+  align-items: center; /* Centrerar vertikalt */
+  padding: 0 20px; /* Lägger till padding för luft */
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 1000;
+}
+
+/* H1 och H2 styling */
+h1 {
+  margin-left: 28px;
+  margin-top: 100px; /* Ger lite avstånd under bannern */
+  font-size: 32px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 50px;
+  font-family: 'Noto Sans';
+}
+
+/* Centrera texten korrekt */
+.bannertext {
+  flex-grow: 1; /* Tar upp allt tillgängligt utrymme */
+  display: flex;
+  justify-content: center; /* Centrerar texten horisontellt */
+  align-items: center;
+  gap: 20px; /* Mellanrum mellan ikon och text */
+}
+
+/* Justera ikonerna till höger */
+.bannericon {
+  display: flex;
+  gap: 25px; /* Mellanrum mellan ikonerna */
+  margin-left: auto; /* Skjuter den till höger */
+  margin-right: 40px;
+  margin-bottom: 10px;
+}
+
+.icon-container {
+  display: flex;
+  flex-direction: column; /* Staplar ikonen och texten vertikalt */
+  align-items: center; /* Centrerar innehållet */
+  text-align: center;
+  font-size: 14px; /* Justera textstorlek */
+  color: white;
+  font-family: 'Noto Sans';
+}
+
+/* Stil för den vänstra navigeringsbaren */
+.sidebar {
+  width: 250px;
+  height: 100vh; /* Full höjd (hela skärmen) */
+  background-color: #eff5f8;
+  position: fixed; /* Fixerad på vänster sida */
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column; /* Menyobjekten placeras under varandra */
+  padding-top: 20px;
+}
+
+/* Styling för länkar och dropdown-knappar */
+.sidebar a, .dropdown-btn {
+  padding: 15px;
+  display: block; /* Gör att varje menyobjekt ligger under varandra */
+  font-size: 18px;
+  border: none;
+  background: none;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+  background-color: #eff5f8;
+  color: #396291;
+  border: 1px solid #9e9fa4;
+}
+
+.sidebar a:hover, .dropdown-btn:hover {
+  background-color: #d5eaf5;
+}
+
+/* Dropdown-meny (gömd från början) */
+.dropdown-menu {
+  display: none; /* Alpine.js styr synligheten */
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+/* Alpine.js animation vid visning */
+[x-show="open"] {
+  display: flex !important;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* När dropdown visas */
+[x-show="open"].x-enter {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Styling för dropdown-länkar */
+.dropdown-menu a {
+  padding: 10px;
+  display: block;
+  text-decoration: none;
+  border-bottom: 1px solid #444;
+}
+
+.dropdown-menu a:hover {
+  background-color: #d5eaf5;
+}
+
+/* Innehåll (höger sida) */
+.content {
+  margin-left: 260px; /* Skapar plats för navbaren */
+  padding: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
