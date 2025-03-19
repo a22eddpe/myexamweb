@@ -2,15 +2,15 @@
 <html lang="sv">
 
 <head>
-    <title>Alpine.js</title>
+    <title>Vårdkompassen</title>
     <meta charset="UTF-8">
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link rel="stylesheet" href="alpinestyle.css">
 </head>
 
-<body x-data="{ page: window.location.hash ? window.location.hash.substring(1) : 'hem' }">
-
+<body x-data="{ page: window.location.hash ? window.location.hash.substring(1) : 'hem', highContrast: false }"
+    x-bind:class="{'high-contrast': highContrast}">
     <!-- Banner -->
     <div id="banner">
         <div class="bannertext">
@@ -38,47 +38,62 @@
         <button @click="page = 'bokatid'; window.location.hash = 'bokatid'">Boka tid</button>
 
         <!-- Dropdown för bokningar -->
-        <div class="dropdown" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+        <div class="dropdown1" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
             <button class="dropdown-btn">Bokningar ▼</button>
             <div class="dropdown-menu" x-show="open" x-transition>
-                <button @click="page = 'sebokadetider'; window.location.hash = 'sebokadetider'">Se bokningar</button>
-                <button @click="page = 'avokatid'; window.location.hash = 'avokatid'">Avboka</button>
+                <button class="dropdown-item" @click="page = 'sebokadetider'; window.location.hash = 'sebokadetider'">Se bokningar</button>
+                <button class="dropdown-item" @click="page = 'avokatid'; window.location.hash = 'avokatid'">Avboka</button>
             </div>
         </div>
 
         <!-- Dropdown för olika sjukdomar -->
-        <div class="dropdown" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+        <div class="dropdown2" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
             <button class="dropdown-btn">Olika sjukdomar ▼</button>
             <div class="dropdown-menu" x-show="open" x-transition>
-                <button @click="page = 'virus'; window.location.hash = 'virus'">Virus</button>
-                <button @click="page = 'muskelvark'; window.location.hash = 'muskelvark'">Muskelvärk</button>
-                <button @click="page = 'forkylning'; window.location.hash = 'forkylning'">Förkylning</button>
-                <button @click="page = 'allergi'; window.location.hash = 'allergi'">Allergi</button>
+                <button class="dropdown-item" @click="page = 'virus'; window.location.hash = 'virus'">Virus</button>
+                <button class="dropdown-item" @click="page = 'muskelvark'; window.location.hash = 'muskelvark'">Muskelvärk</button>
+                <button class="dropdown-item" @click="page = 'forkylning'; window.location.hash = 'forkylning'">Förkylning</button>
+                <button class="dropdown-item" @click="page = 'allergi'; window.location.hash = 'allergi'">Allergi</button>
             </div>
         </div>
 
-        <button @click="page = 'fornyarecept'; window.location.hash = 'fornyarecept'">Förnya recept</button>
-        <button @click="page = 'skaffalakarintyg'; window.location.hash = 'skaffalakarintyg'">Skaffa läkarintyg</button>
-
-        <!-- Dropdown för våra vårdcentraler -->
-        <div class="dropdown" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+        <!-- Dropdown för vårdcentraler -->
+        <div class="dropdown3" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
             <button class="dropdown-btn">Våra vårdcentraler ▼</button>
             <div class="dropdown-menu" x-show="open" x-transition>
-                <button @click="page = 'skovde'; window.location.hash = 'skovde'">Skövde</button>
-                <button @click="page = 'goteborg'; window.location.hash = 'goteborg'">Göteborg</button>
-                <button @click="page = 'stockholm'; window.location.hash = 'stockholm'">Stockholm</button>
-                <button @click="page = 'malmo'; window.location.hash = 'malmo'">Malmö</button>
+                <button class="dropdown-item" @click="page = 'skovde'; window.location.hash = 'skovde'">Skövde</button>
+                <button class="dropdown-item" @click="page = 'goteborg'; window.location.hash = 'goteborg'">Göteborg</button>
+                <button class="dropdown-item" @click="page = 'stockholm'; window.location.hash = 'stockholm'">Stockholm</button>
+                <button class="dropdown-item" @click="page = 'malmo'; window.location.hash = 'malmo'">Malmö</button>
             </div>
         </div>
 
         <button @click="page = 'omoss'; window.location.hash = 'omoss'">Om oss</button>
+        <button class="btnkontrast" @click="highContrast = !highContrast">
+            <span x-text="highContrast ? 'Återställ standardvy' : 'Aktivera högkontrast'"></span>
+        </button>
     </nav>
 
     <!-- Huvudinnehåll -->
-    <div class="content">
-        <div x-show="page === 'hem'">
+    <div class="contentpage">
+        <div x-data="{ showDetails: false, isHighlighted: false }" x-show="page === 'hem'">
             <h1>Välkommen till Vårdkompassen</h1>
+        
+            <!-- Knapp för att visa/dölja information -->
+            <button class="btnvisa-dolj" @click="showDetails = !showDetails">
+                <span x-text="showDetails ? 'Dölj information' : 'Mer information'"></span>
+            </button>
+        
+            <!-- Området som visas/döljs -->
+            <div x-show="showDetails" x-transition>
+                <div class="details">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum ipsa quae nihil repellendus quisquam...
+                    </p>
+                </div>
+            </div>
         </div>
+
 
         <div x-show="page === 'bokatid'">
             <h1>Boka Tid</h1>

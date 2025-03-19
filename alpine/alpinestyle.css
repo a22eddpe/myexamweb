@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100..900&display=swap');
 
+/* Grundläggande styling */
 body {
-    margin: 0;
-    display: flex;
+    margin-left: 290px; /* Skapar plats för navbaren */
+    padding: 20px;
     background-color: #eff5f8;
-    font-family: 'Noto Sans', sans-serif;
 }
-
+  
 /* Banner */
 #banner {
     background-color: #2a92c2;
@@ -17,69 +17,273 @@ body {
     width: 100vw;
     height: 80px;
     display: flex;
-    align-items: center;
-    padding: 0 20px;
+    align-items: center; /* Centrerar vertikalt */
+    padding: 0 20px; /* Lägger till padding för luft */
     font-size: 24px;
     font-weight: bold;
     z-index: 1000;
 }
 
+/* Centrera texten korrekt */
 .bannertext {
-    flex-grow: 1;
+    flex-grow: 1; /* Tar upp allt tillgängligt utrymme */
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Centrerar texten horisontellt */
     align-items: center;
-    gap: 20px;
+    gap: 20px; /* Mellanrum mellan ikon och text */
 }
 
+/* Justera ikonerna till höger */
 .bannericon {
     display: flex;
-    gap: 25px;
-    margin-left: auto;
+    gap: 25px; /* Mellanrum mellan ikonerna */
+    margin-left: auto; /* Skjuter den till höger */
     margin-right: 40px;
+    margin-bottom: 10px;
+}
+
+.icon-container {
+    display: flex;
+    flex-direction: column; /* Staplar ikonen och texten vertikalt */
+    align-items: center; /* Centrerar innehållet */
+    text-align: center;
+    font-size: 14px; /* Justera textstorlek */
+    color: white;
+    font-family: 'Noto Sans';
+}
+
+/* H1 och H2 styling */
+h1 {
+    margin-left: 28px;
+    margin-top: 100px; /* Ger lite avstånd under bannern */
+    font-size: 32px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 50px;
+    font-family: 'Noto Sans';
 }
 
 .sidebar {
+    background-color: #eff5f8;
+    display: flex;
     width: 290px;
     height: 100vh;
-    background-color: #eff5f8;
     position: fixed;
     left: 0;
-    top: 80px;
-    display: flex;
+    top: 90px;
     flex-direction: column;
-    border-right: 1px solid #9e9fa4;
 }
 
 .sidebar button, .dropdown-btn {
-    padding: 15px;
-    width: 100%;
-    border: 1px solid #9e9fa4;
     background-color: #eff5f8;
+    color: #396291;
+    border: 1px solid #9e9fa4;
+    width: 290px; /* Samma bredd för alla knappar */
+    height: 60px; /* Samma höjd för alla knappar */
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
+    display: flex;
+    align-items: center; /* Centrerar texten vertikalt */
+    justify-content: center; /* Centrerar texten horisontellt */
+    margin-bottom: 10px; /* Samma avstånd mellan alla knappar */
     text-align: center;
+    transition: background-color 0.3s ease-in-out;
 }
 
 .sidebar button:hover, .dropdown-btn:hover {
     background-color: #d5eaf5;
 }
 
-.dropdown-menu {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    background-color: #eff5f8;
-    border: 1px solid #9e9fa4;
-    width: 200px;
+.dropdown1 {
+    position: relative;
+    width: 290px; /* Bredd på knappen */
 }
 
+.dropdown2 {
+    position: relative;
+    width: 290px; /* Bredd på knappen */
+}
+
+.dropdown3 {
+    position: relative;
+    width: 290px; /* Bredd på knappen */
+}
+
+.dropdown-btn {
+    background-color: #396291;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%; /* Knappen tar hela bredden */
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background-color: #eff5f8;
+    width: 200px;
+    z-index: 100;
+    flex-direction: column;
+    white-space: nowrap; /* Förhindrar att text bryts */
+}
+
+.dropdown-item {
+    padding: 15px;
+    color: #396291;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 1px solid #9e9fa4;
+}
+
+.dropdown-item:hover {
+    background-color: #d9e3f0;
+}
+
+.dropdown:hover .dropdown-item {
+    display: flex;
+}
+  
 [x-show="open"] {
     display: flex !important;
 }
 
-.content {
-    margin-left: 310px;
+.contentpage {
+    margin-left: 290px; /* Skapar plats för navbaren */
     padding: 20px;
+    background-color: #eff5f8;
+}
+
+/* Stil för "Mer information" / "Dölj information" knappen */
+.btnvisa-dolj {
+    min-width: 180px;
+    background-color: #2a92c2;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btnvisa-dolj:hover {
+    background-color: #1f7aa2;
+    transform: scale(1.05);
+}
+
+/* Animera visningen av .details */
+.details {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 6px;
+    background-color: #f8f9fa;
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.6;
+    display: none;  /* Dölj från start */
+}
+
+/* Alpine.js hanterar visning */
+[x-show="showDetails"] {
+    display: block !important;
+}
+
+.btnkontrast {
+    background-color: #f39c12;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btnkontrast:hover {
+    background-color: #d68910;
+    transform: scale(1.05);
+}
+
+/* Högkontrastläge */
+.high-contrast {
+    background-color: #d6d6d6 !important; /* Ljusgrå bakgrund */
+    color: black !important; /* Svart text */
+}
+
+/* Ändra färger på knappar vid högkontrastläge */
+.high-contrast .sidebar button {
+    background-color: #cacaca;
+    color: black;
+}
+
+.high-contrast .sidebar button:hover {
+    background-color: #b0b0b0;
+}
+
+/* Ändra bannerns färger */
+.high-contrast #banner {
+    background-color: #595959;
+    color: white;
+}
+
+/* Ändra knappfärger */
+.high-contrast .btnkontrast {
+    background-color: #595959;
+    color: white;
+}
+
+.high-contrast .btnkontrast:hover {
+    background-color: #3d3d3d;
+}
+
+.high-contrast .contentpage {
+    background-color: #d6d6d6;
+    color: white;
+}
+
+.high-contrast .sidebar {
+    background-color: #d6d6d6;
+    color: black;
+}
+
+.high-contrast div .dropdown-menu{
+    background-color: #d6d6d6;
+    color: black;
+}
+
+.high-contrast h1 {
+    margin-left: 28px;
+    margin-top: 100px; /* Ger lite avstånd under bannern */
+    font-size: 32px;
+    color: black;
+}
+
+.high-contrast h2 {
+    text-align: center;
+    font-size: 24px;
+    color: black;
+}
+
+.high-contrast h3 {
+    font-size: 50px;
+    font-family: 'Noto Sans';
+    color: black;
 }
