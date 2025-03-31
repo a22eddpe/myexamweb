@@ -101,17 +101,7 @@ h3 {
     background-color: #d5eaf5;
 }
 
-.dropdown1 {
-    position: relative;
-    width: 290px; /* Bredd på knappen */
-}
-
-.dropdown2 {
-    position: relative;
-    width: 290px; /* Bredd på knappen */
-}
-
-.dropdown3 {
+.dropdown {
     position: relative;
     width: 290px; /* Bredd på knappen */
 }
@@ -129,8 +119,11 @@ h3 {
     width: 100%; /* Knappen tar hela bredden */
 }
 
+[x-cloak] {
+    display: none !important;
+}
+
 .dropdown-menu {
-    display: none;
     position: absolute;
     left: 100%;
     top: 0;
@@ -153,14 +146,6 @@ h3 {
 
 .dropdown-item:hover {
     background-color: #d9e3f0;
-}
-
-.dropdown:hover .dropdown-item {
-    display: flex;
-}
-  
-[x-show="open"] {
-    display: flex !important;
 }
 
 .contentpage {
