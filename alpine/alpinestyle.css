@@ -182,7 +182,6 @@ h3 {
     text-align: left;
     font-size: 16px;
     line-height: 1.6;
-    display: none;  /* Dölj från start */
 }
 
 /* Alpine.js hanterar visning */
@@ -272,3 +271,31 @@ h3 {
     font-family: 'Noto Sans';
     color: black;
 }
+
+.btnvisa.contrast-active {
+    background-color: white;
+    color: #4CAF50;
+    border: 2px solid #4CAF50;
+}
+
+.btnvisa {
+    background-color: #4CAF50;       /* Grön bakgrund */
+    color: white;                    /* Vit text */
+    padding: 10px 20px;              /* Luft runt texten */
+    margin: 5px;                     /* Lite mellanrum mellan knappar */
+    border: none;                    /* Ingen kantlinje */
+    border-radius: 4px;              /* Mjuka hörn */
+    font-size: 16px;                 /* Tydlig textstorlek */
+    font-weight: bold;              /* Fet text */
+    cursor: pointer;                /* Pekaren ändras vid hover */
+    transition: background-color 0.3s ease;
+}
+
+.details {
+    background-color: #f8f9fa;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+
