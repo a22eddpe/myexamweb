@@ -94,7 +94,9 @@ h3 {
   cursor: pointer;
   display: flex;
   align-items: center; /* Centrerar texten vertikalt */
-  justify-content: center; /* Centrerar texten horisontellt */
+  justify-content: flex-start;
+  gap: 10px;
+  text-align: left;
   margin-bottom: 10px; /* Samma avstånd mellan alla knappar */
   text-align: center;
   transition: background-color 0.3s ease-in-out;
@@ -121,8 +123,10 @@ h3 {
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
   width: 100%; /* Knappen tar hela bredden */
+  justify-content: flex-start;
+  gap: 10px;
+  text-align: left;
 }
 
 /* Dropdown-meny (visas till höger) */

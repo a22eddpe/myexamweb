@@ -16,6 +16,9 @@
 
         <!-- Banner -->
         <div id="banner">
+            <button class="btnkontrast" @click="highContrast = !highContrast">
+                <span x-text="highContrast ? 'Återställ standardvy' : 'Aktivera högkontrast'"></span>
+            </button>
             <div class="bannertext">
                 <img class="explore" src="icons/explore_60dp_FFF_FILL0_wght400_GRAD0_opsz48.svg" />
                 <h3>Vårdkompassen</h3>
@@ -38,11 +41,11 @@
 
         <!-- Navigeringsmeny -->
         <nav class="sidebar">
-            <button @click="window.location.hash = 'bokatid'">Boka tid</button>
+            <button @click="window.location.hash = 'bokatid'"><img class="schedule" src="icons/schedule_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Boka tid</button>
 
             <!-- Dropdown för bokningar -->
             <div class="dropdown" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                <button class="dropdown-btn">Bokningar ▼</button>
+                <button class="dropdown-btn"><img class="calender" src="icons/calendar_month_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Bokningar ▼</button>
                 <div class="dropdown-menu" x-show="open" x-transition x-cloak>
                     <button class="dropdown-item" @click="window.location.hash = 'sebokadetider'">Se bokningar</button>
                     <button class="dropdown-item" @click="window.location.hash = 'avokatid'">Avboka</button>
@@ -51,7 +54,7 @@
 
             <!-- Dropdown för olika sjukdomar -->
             <div class="dropdown" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                <button class="dropdown-btn">Olika sjukdomar ▼</button>
+                <button class="dropdown-btn"><img class="microbiology" src="icons/microbiology_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Olika sjukdomar ▼</button>
                 <div class="dropdown-menu" x-show="open" x-transition x-cloak>
                     <button class="dropdown-item" @click="window.location.hash = 'virus'">Virus</button>
                     <button class="dropdown-item" @click="window.location.hash = 'muskelvark'">Muskelvärk</button>
@@ -60,9 +63,15 @@
                 </div>
             </div>
 
+            <!--FÖRNYA RECEPT-->
+            <button @click="window.location.hash = 'fornyarecept'"><img class="prescriptions" src="icons/prescriptions_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Förnya recept</button>
+
+            <!--Skaffa läkarintyg-->
+            <button @click="window.location.hash = 'skaffalakarintyg'"><img class="medicalinformation" src="icons/medical_information_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Skaffa läkarintyg</button>
+
             <!-- Dropdown för vårdcentraler -->
             <div class="dropdown" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                <button class="dropdown-btn">Våra vårdcentraler ▼</button>
+                <button class="dropdown-btn"><img class="addlocation" src="icons/add_location_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Våra vårdcentraler ▼</button>
                 <div class="dropdown-menu" x-show="open" x-transition x-cloak>
                     <button class="dropdown-item" @click="window.location.hash = 'skovde'">Skövde</button>
                     <button class="dropdown-item" @click="window.location.hash = 'goteborg'">Göteborg</button>
@@ -71,11 +80,11 @@
                 </div>
             </div>
 
-            <button @click="window.location.hash = 'omoss'">Om oss</button>
+            <!--kontakta-->
+            <button @click="window.location.hash = 'kontakta'"><img class="permphone" src="icons/perm_phone_msg_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Kontakta oss</button>
 
-            <button class="btnkontrast" @click="highContrast = !highContrast">
-                <span x-text="highContrast ? 'Återställ standardvy' : 'Aktivera högkontrast'"></span>
-            </button>
+            <!--om oss-->
+            <button @click="window.location.hash = 'omoss'"><img class="groups" src="icons/groups_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Om oss</button>
         </nav>
 
         <!-- Huvudinnehåll -->
@@ -141,6 +150,14 @@
                 <h1>Allergi</h1>
             </div>
 
+            <div x-show="page === 'fornyarecept'">
+                <h1>Förnya recept</h1>
+            </div>
+
+            <div x-show="page === 'skaffalakarintyg'">
+                <h1>Skaffa läkarintyg</h1>
+            </div>
+
             <div x-show="page === 'skovde'">
                 <h1>Vårdcentral Skövde</h1>
             </div>
@@ -155,6 +172,10 @@
 
             <div x-show="page === 'malmo'">
                 <h1>Vårdcentral Malmö</h1>
+            </div>
+
+            <div x-show="page === 'kontakta'">
+                <h1>Kontakta oss</h1>
             </div>
 
             <div x-show="page === 'omoss'">
