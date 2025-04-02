@@ -162,3 +162,91 @@ h3 {
 .dropdown:hover .dropdown-menu {
   display: flex;
 }
+
+.btnkontrast {
+  background-color: #f39c12;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btnkontrast:hover {
+  background-color: #d68910;
+  transform: scale(1.05);
+}
+
+/* Högkontrast/dark mode stil, aktiveras när <body> har class="darkmode" */
+body.darkmode {
+  background-color: #d6d6d6 !important;
+  color: black !important;
+}
+body.darkmode .sidebar button {
+  background-color: #cacaca;
+  color: black;
+}
+body.darkmode .sidebar button:hover {
+  background-color: #b0b0b0;
+}
+body.darkmode #banner {
+  background-color: #595959;
+  color: white;
+}
+body.darkmode .btnkontrast {
+  background-color: #595959;
+  color: white;
+}
+body.darkmode .btnkontrast:hover {
+  background-color: #3d3d3d;
+}
+body.darkmode .contentpage {
+  background-color: #d6d6d6;
+  color: white;
+}
+body.darkmode .sidebar {
+  background-color: #d6d6d6;
+  color: black;
+}
+body.darkmode div .dropdown-menu {
+  background-color: #d6d6d6;
+  color: black;
+}
+body.darkmode h1,
+body.darkmode h2,
+body.darkmode h3 {
+  color: black;
+}
+
+body.darkmode #navbar {
+  background-color: #d6d6d6;
+  color: black;
+}
+
+body.darkmode #navbar button,
+body.darkmode .dropdown-btn {
+  background-color: #cacaca;
+  color: black;
+}
+
+body.darkmode #navbar button:hover,
+body.darkmode .dropdown-btn:hover {
+  background-color: #b0b0b0;
+}
+
+body.darkmode .dropdown-menu {
+  background-color: #d6d6d6;
+  color: black;
+}
+
+body.darkmode .dropdown-menu a {
+  color: black;
+  border-bottom: 1px solid #9e9fa4;
+}
+
+body.darkmode .dropdown-menu a:hover {
+  background-color: #b0b0b0;
+}

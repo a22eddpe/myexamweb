@@ -13,6 +13,7 @@
 
     <!--BANNER-->
     <div id="banner">
+      <button id="darkmodeToggle" class="btnkontrast">Aktivera högkontrast</button>
       <div class="bannertext">
         <img class="explore" src="icons/explore_60dp_FFF_FILL0_wght400_GRAD0_opsz48.svg"/>
         <h3>Vårdkompassen</h3>
@@ -202,6 +203,29 @@
       function setupHistory(){ 
         window.onpopstate = function(event) { historyChange(event); };
       }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const toggleBtn = document.getElementById('darkmodeToggle');
+        if (localStorage.getItem('darkmode') === 'true') {
+            document.body.classList.add('darkmode');
+            toggleBtn.textContent = 'Återställ standardvy';
+        } else {
+            document.body.classList.remove('darkmode');
+            toggleBtn.textContent = 'Aktivera högkontrast';
+        }
+
+        toggleBtn.addEventListener('click', function() {
+            if (document.body.classList.contains('darkmode')) {
+                document.body.classList.remove('darkmode');
+                toggleBtn.textContent = 'Aktivera högkontrast';
+                localStorage.setItem('darkmode', 'false');
+            } else {
+                document.body.classList.add('darkmode');
+                toggleBtn.textContent = 'Återställ standardvy';
+                localStorage.setItem('darkmode', 'true');
+            }
+        });
+      });
          
     </script>
 
