@@ -92,7 +92,28 @@
 
             <!-- Startsida (hem) -->
             <div x-show="page === 'hem'" x-data="{ showDetails: false, isHighlighted: false }">
-                <h1>Välkommen till Vårdkompassen</h1>
+                <div x-data="{ textSize: 16 }" class="heading-wrapper">
+                    <!-- H1 + knappar -->
+                    <div class="heading-container">
+                      <h1>Välkommen till Vårdkompassen</h1>
+                      <div class="text-zoom">
+                        <button class="btniconbig" @click=" textSize += 4">
+                          <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+                        </button>
+                        <button class="btniconsmall" @click="textSize -= 4">
+                          <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+                        </button>
+                      </div>
+                    </div>
+                  
+                    <!-- Själva texten -->
+                    <div id="infoBox" class="text-box" :style="`font-size: ${textSize}px`">
+                        Våren är här, och med den kommer också den årliga pollenallergin. Många upplever just nu besvär som rinnande näsa, kliande ögon, nysningar och trötthet – typiska symptom på allergi mot björk- eller gräspollen. Pollenhalterna är redan höga i stora delar av landet, särskilt under soliga, torra och blåsiga dagar.
+                        För allergiker kan det kännas som att ha en ständig förkylning, vilket påverkar både koncentration och sömn. Det finns dock hjälp att få. Receptfria läkemedel som antihistaminer, nässprayer och ögondroppar kan lindra symtomen. För den som är extra känslig kan läkare skriva ut starkare behandling eller föreslå allergivaccination.
+                        För att minska besvären rekommenderas att du:
+                        Undviker att vädra på morgonen när pollennivåerna är som högst
+                    </div>
+                </div>
             </div>
 
             <!-- Boka tid -->

@@ -302,6 +302,48 @@ h3 {
     margin-top: 10px;
     border-radius: 6px;
     font-size: 16px;
+}
+
+.text-zoom {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-right: 30px;
+    margin-top: 6%;
+}
+  
+.btniconbig{
+    border-radius: 3px;
+    border: 1px solid #2a92c2;
+    background-color: #2a92c2;
+    padding: 6px;
+    cursor: pointer;
+}
+.btniconsmall {
+    border-radius: 3px;
+    border: 1px solid #2a92c2;
+    background-color: #2a92c2;
+    padding: 6px;
+    cursor: pointer;
+}
+
+.text-box {
+    line-height: 1.6;
+    background-color:#eff5f8;
+    padding: 15px;
+    border-radius: 8px;
+    max-width: 600px;
+    transition: font-size 0.3s ease;
+    margin-top: 20px;
+}
+
+.heading-container {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    gap: 20px; 
+    flex-wrap: wrap; 
+    margin-top: 6%; 
   }
 
 
