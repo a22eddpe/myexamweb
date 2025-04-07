@@ -43,9 +43,9 @@
       <div class="dropdown">
         <button class="dropdown-btn" onclick="showpage('bokningar', true);" onmouseover="showDropdown('bokningar-menu')" onmouseout="hideDropdown('bokningar-menu')"><img class="calender" src="icons/calendar_month_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Bokningar ▼</button>
         <div class="dropdown-menu" id="bokningar-menu" onmouseover="showDropdown('bokningar-menu')" onmouseout="hideDropdown('bokningar-menu')">
-          <a href="#" onclick="showpage('sebokadetider', true);">Se bokade tider</a>
-          <a href="#" onclick="showpage('avokatid', true);">Avboka tid</a>
-          <a href="#" onclick="showpage('bokaomtid', true);">Boka om tid</a>
+          <a href="#" onclick="showpage('sebokadetider', true); return false;">Se bokade tider</a>
+          <a href="#" onclick="showpage('avbokatid', true); return false;">Avboka tid</a>
+          <a href="#" onclick="showpage('bokaomtid', true); return false;">Boka om tid</a>
         </div>
       </div>
 
@@ -53,10 +53,10 @@
       <div class="dropdown">
         <button class="dropdown-btn" onclick="showpage('olikasjukdomar', true);" onmouseover="showDropdown('olikasjukdomar-menu')" onmouseout="hideDropdown('olikasjukdomar-menu')"><img class="microbiology" src="icons/microbiology_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Olika sjukdomar ▼</button>
         <div class="dropdown-menu" id="olikasjukdomar-menu" onmouseover="showDropdown('olikasjukdomar-menu')" onmouseout="hideDropdown('olikasjukdomar-menu')">
-          <a href="#" onclick="showpage('virus', true);">Virus</a>
-          <a href="#" onclick="showpage('muskelvark', true);">Muskelvärk</a>
-          <a href="#" onclick="showpage('forkylning', true);">Förkylning</a>
-          <a href="#" onclick="showpage('allergi', true);">Allergi</a>
+          <a href="#" onclick="showpage('virus', true); return false;">Virus</a>
+          <a href="#" onclick="showpage('muskelvark', true); return false;">Muskelvärk</a>
+          <a href="#" onclick="showpage('forkylning', true); return false;">Förkylning</a>
+          <a href="#" onclick="showpage('allergi', true); return false;">Allergi</a>
         </div>
       </div>
 
@@ -70,10 +70,10 @@
       <div class="dropdown">
         <button class="dropdown-btn" onclick="showpage('vardcentraler', true);" onmouseover="showDropdown('vardcentraler-menu')" onmouseout="hideDropdown('vardcentraler-menu')"><img class="addlocation" src="icons/add_location_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Våra vårdcentraler ▼</button>
         <div class="dropdown-menu" id="vardcentraler-menu" onmouseover="showDropdown('vardcentraler-menu')" onmouseout="hideDropdown('vardcentraler-menu')">
-          <a href="#" onclick="showpage('skovde', true);">Skövde</a>
-          <a href="#" onclick="showpage('goteborg', true);">Göteborg</a>
-          <a href="#" onclick="showpage('stockholm', true);">Stockholm</a>
-          <a href="#" onclick="showpage('malmo', true);">Malmö</a>
+          <a href="#" onclick="showpage('skovde', true); return false;">Skövde</a>
+          <a href="#" onclick="showpage('goteborg', true); return false;">Göteborg</a>
+          <a href="#" onclick="showpage('stockholm', true); return false;">Stockholm</a>
+          <a href="#" onclick="showpage('malmo', true); return false;">Malmö</a>
         </div>
       </div>
 
@@ -81,9 +81,9 @@
       <div class="dropdown">
         <button class="dropdown-btn" onclick="showpage('kontakta', true);" onmouseover="showDropdown('kontakta-menu')" onmouseout="hideDropdown('kontakta-menu')"><img class="permphone" src="icons/perm_phone_msg_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Kontakta oss ▼</button>
         <div class="dropdown-menu" id="kontakta-menu" onmouseover="showDropdown('kontakta-menu')" onmouseout="hideDropdown('kontakta-menu')">
-          <a href="#" onclick="showpage('mail', true);">Mail</a>
-          <a href="#" onclick="showpage('chatta', true);">Chatta</a>
-          <a href="#" onclick="showpage('telefon', true);">Telefon</a>
+          <a href="#" onclick="showpage('mail', true); return false;">Mail</a>
+          <a href="#" onclick="showpage('chatta', true); return false;">Chatta</a>
+          <a href="#" onclick="showpage('telefon', true); return false;">Telefon</a>
         </div>
       </div>
 
@@ -104,81 +104,318 @@
       <h2>Just nu är det pollen-säsong</h2>
 
       <div class="hem">
-        <div id="infoBox" class="text-box">
+        <div class="infoBox text-box">
           Våren är här, och med den kommer också den årliga pollenallergin. Många upplever just nu besvär som rinnande näsa, kliande ögon, nysningar och trötthet – typiska symptom på allergi mot björk- eller gräspollen. Pollenhalterna är redan höga i stora delar av landet, särskilt under soliga, torra och blåsiga dagar.
           För allergiker kan det kännas som att ha en ständig förkylning, vilket påverkar både koncentration och sömn. Det finns dock hjälp att få. Receptfria läkemedel som antihistaminer, nässprayer och ögondroppar kan lindra symtomen. För den som är extra känslig kan läkare skriva ut starkare behandling eller föreslå allergivaccination.
           För att minska besvären rekommenderas att du:
           Undviker att vädra på morgonen när pollennivåerna är som högst
+          Håller fönster stängda under dagtid kan också hjälpa, särskilt när det är torrt och blåsigt ute. Duscha och byt kläder efter att du varit utomhus för att få bort pollen som fastnat i håret och på huden. Torka inte kläder eller sängkläder utomhus under pollensäsongen, eftersom pollen lätt fastnar i tyget.
+          Många upplever även att det hjälper att följa pollenprognoser och anpassa aktiviteter därefter. Genom att vara förberedd och ta förebyggande åtgärder kan du göra vardagen lite lättare under den här besvärliga tiden på året.
+        </div>
+        <img id="bild" src="icons/IMG_2878.PNG">
       </div>
     </div>
 
     <!--BOKA TID PAGE-->
     <div id="bokatid" class="page">
-      <h1>Boka Tid</h1>
-      <div id="infoBox" class="text-box">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus corrupti ab rerum, a sequi voluptas fugiat nam quis sit harum fuga qui nihil voluptatibus soluta explicabo porro quae beatae vitae.
-      <!-- Knapp -->
-      <button onclick="makeTextLarger()">Öka textstorlek</button>
-    </div>
+      <div class="text-zoom">
+        <button class="btniconbig" onclick="makeTextLarger()">
+          <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+        <button class="btniconsmall" onclick="makeTextSmaller()">
+          <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+      </div>
+      <h1 class="hemText">Här kan du boka tid till ditt nästa besök</h1>
+      <h2>Just nu har du inga bokade tider</h2>
 
-    <!--BOKNINGAR PAGE-->
-    <div id="bokningar" class="page">
-      <h1>Bokningar</h1>
-      <div class="text">
-        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus corrupti ab rerum, a sequi voluptas fugiat nam quis sit harum fuga qui nihil voluptatibus soluta explicabo porro quae beatae vitae.</h2>
+      <div class="hem">
+        <div class="infoBox text-box">
+          Så bokar du en tid hos Vårdkompassen digitalt<br>
+          Att boka tid hos vårdcentralen har blivit enklare än någonsin tack vare digitala tjänster. Istället för att sitta i telefonkö kan du numera logga in på din vårdcentrals webbplats eller använda en e-tjänst  för att snabbt och smidigt hitta en ledig tid.
+          För att boka digitalt behöver du först logga in med BankID på den plattform som vårdcentralen använder. Väl inloggad kan du välja vilken typ av ärende du har – exempelvis ett fysiskt besök, ett videomöte eller rådgivning. Därefter väljer du en tid som passar dig i det digitala bokningssystemet. Du får också möjlighet att beskriva dina symtom eller ditt ärende kort, vilket hjälper vårdpersonalen att förbereda sig inför mötet.
+          När du har bokat får du en bekräftelse direkt, oftast via e-post eller sms. Du kan även logga in igen senare för att ändra eller avboka tiden om det skulle behövas.
+          Digital bokning sparar tid och ger dig större frihet att hantera din vård – när det passar dig bäst.
+        </div>
+      </div>
+    </div>
+    
+
+    <!--BOKNINGAR PAGE se bokade tider-->
+    <div id="sebokadetider" class="page">
+      <div class="text-zoom">
+        <button class="btniconbig" onclick="makeTextLarger()">
+          <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+        <button class="btniconsmall" onclick="makeTextSmaller()">
+          <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+      </div>
+      <h1 class="hemText">Här ser du dina bokade tider</h1>
+      <h2>Just nu har du inga bokade tider</h2>
+      <div class="hem">
+        <div class="infoBox text-box">
+          För att boka en tid, klicka på knappen "Boka tid" i menyn.
+          Om du nyligen har gjort en bokning kan det ta några minuter innan den visas här.
+          Tveka inte att kontakta oss på Vårdkompassen om du behöver hjälp.
+        </div>
+      </div>
+    </div>
+    <!--BOKNINGAR PAGE avboka tid-->
+    <div id="avbokatid" class="page">
+      <div class="text-zoom">
+        <button class="btniconbig" onclick="makeTextLarger()">
+          <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+        <button class="btniconsmall" onclick="makeTextSmaller()">
+          <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+      </div>
+      <h1 class="hemText">Vill du avboka en tid?</h1>
+      <h2>Just nu har du inga tider att avboka</h2>
+
+      <div class="hem">
+        <div class="infoBox text-box">
+          Så avbokar du din tid hos Vårdkompassen<br>
+          Om du inte längre kan komma på din bokade tid är det enkelt att avboka digitalt.<br>
+          Gör så här:<br>
+          Gå till sidan "Avboka tid" i menyn.<br>
+          Logga in med ditt BankID för att verifiera din identitet.<br>
+          Välj den tid du vill avboka i listan över dina bokade tider.<br>
+          Klicka på "Avboka" och bekräfta.<br>
+          Efter avbokningen får du en bekräftelse via sms eller e-post.<br>
+          Tänk på att avboka i god tid, så att tiden kan erbjudas till någon annan.
+        </div>
+      </div>
+    </div>
+    <!--BOKNINGAR PAGE omboka tid-->
+    <div id="bokaomtid" class="page">
+      <div class="text-zoom">
+        <button class="btniconbig" onclick="makeTextLarger()">
+          <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+        <button class="btniconsmall" onclick="makeTextSmaller()">
+          <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+      </div>
+      <h1 class="hemText">Här kan du boka om din tid</h1>
+      <h2>Just nu har du inga tider att boka om</h2>
+
+      <div class="hem">
+        <div class="infoBox text-box">
+          Så bokar du om din tid hos vårdcentralen<br>
+          Behöver du ändra din bokade tid? Inga problem – du kan enkelt boka om digitalt.
+          Följ dessa steg:<br>          
+          Gå till sidan "Boka om tid" i menyn.<br>        
+          Logga in med BankID för att visa dina aktuella bokningar.<br>        
+          Välj den tid du vill boka om.<br>         
+          Klicka på "Boka om" och välj en ny tid som passar dig bättre.<br>         
+          Bekräfta ombokningen.<br>        
+          Du får en bekräftelse via sms eller e-post när ombokningen är klar.<br>
+          Tänk på att göra det i god tid för att öka chansen att hitta en tid som passar dig.
+        </div>
       </div>
     </div>
 
-    <!--OLIKA SJUKDOMAR PAGE-->
-    <div id="olikasjukdomar" class="page">
-      <h1>Olika sjukdomar</h1>
-      <div class="text">
-        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus corrupti ab rerum, a sequi voluptas fugiat nam quis sit harum fuga qui nihil voluptatibus soluta explicabo porro quae beatae vitae.</h2>
+    <!--OLIKA SJUKDOMAR PAGE virus-->
+    <div id="virus" class="page">
+      <div class="text-zoom">
+        <button class="btniconbig" onclick="makeTextLarger()">
+          <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+        <button class="btniconsmall" onclick="makeTextSmaller()">
+          <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+      </div>
+      <h1 class="hemText">Virus</h1>
+      <h2>På denna sida kan du läsa om olika typer av virus</h2>
+      <div class="hem">
+        <div class="infoBox text-box">
+          Virus är små smittsamma partiklar som kan orsaka allt från milda förkylningar till allvarliga 
+          sjukdomar. Några vanliga virus är influensavirus, som ger säsongsinfluensa med feber och muskelvärk, samt 
+          rhinovirus som är den vanligaste orsaken till förkylning. Coronavirus, som bland annat inkluderar covid-19,
+          kan orsaka luftvägsinfektioner i varierande grad. Maginfluensa orsakas ofta av norovirus, vilket ger illamående,
+          kräkningar och diarré. Virus sprids lätt genom hosta, nysningar eller kontakt med smittade ytor – därför är god 
+          handhygien och vaccination viktiga skydd.
+        </div>
       </div>
     </div>
+    <!--OLIKA SJUKDOMAR PAGE muskelvärk-->
+    <div id="muskelvark" class="page">
+      <div class="text-zoom">
+        <button class="btniconbig" onclick="makeTextLarger()">
+          <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+        <button class="btniconsmall" onclick="makeTextSmaller()">
+          <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+      </div>
+      <h1 class="hemText">Muskelvärk</h1>
+      <h2>På denna sida kan du läsa om muskelvärk</h2>
+      <div class="hem">
+        <div class="infoBox text-box">
+          Vad är muskelvärk?<br>
+          Muskelvärk är ett vanligt tillstånd som kan drabba vem som helst, oavsett ålder eller fysisk kondition. Värken kan kännas som en molande, stel eller öm känsla i en eller flera muskelgrupper, ofta efter fysisk ansträngning, stress eller långvarig stillasittande. Vanliga orsaker till muskelvärk är träning, felaktig kroppshållning, sömnbrist eller spänningar på grund av stress. Ibland kan muskelvärk också uppstå vid infektioner eller sjukdomar som influensa.
+          För att lindra muskelvärk kan det hjälpa att vila, värma det ömma området, stretcha försiktigt eller ta receptfria smärtstillande läkemedel. Om värken håller i sig länge, förvärras eller kommer utan tydlig anledning, bör man kontakta vården för vidare utredning.
+        </div>
+      </div>
+    </div>
+    <!--OLIKA SJUKDOMAR PAGE förkylning-->
+    <div id="forkylning" class="page">
+      <div class="text-zoom">
+        <button class="btniconbig" onclick="makeTextLarger()">
+          <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+        <button class="btniconsmall" onclick="makeTextSmaller()">
+          <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+      </div>
+      <h1 class="hemText">Förkylning</h1>
+      <h2>På denna sida kan du läsa vad du kan tänka på vid förkylning</h2>
+      <div class="hem">
+        <div class="infoBox" class="text-box">
+          Vad är förkylning<br>
+          Förkylning är en av de vanligaste infektionerna i luftvägarna och orsakas av virus. Den sprids lätt genom direktkontakt eller via luften när någon nyser eller hostar. Symtomen börjar oftast med halsont, följt av nästäppa, rinnsnuva, nysningar och hosta. Man kan även känna sig trött, få huvudvärk eller en lätt feber.          
+          Förkylningar går i regel över av sig själva inom en till två veckor och kräver sällan medicinsk behandling. För att lindra symtomen rekommenderas vila, mycket vätska och receptfria läkemedel som febernedsättande eller nässpray. Det är också bra att tvätta händerna ofta för att undvika att smitta andra.
+        </div>
+      </div>
+    </div>
+    <!--OLIKA SJUKDOMAR PAGE allergi-->
+    <div id="allergi" class="page">
+      <div class="text-zoom">
+        <button class="btniconbig" onclick="makeTextLarger()">
+          <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+        <button class="btniconsmall" onclick="makeTextSmaller()">
+          <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+      </div>
+      <h1 class="hemText">Allergi</h1>
+      <h2>På denna sida kan du läsa om allergi</h2>
+      <div class="hem">
+        <div class="infoBox text-box">
+          Vad är allergi?<br>
+          Allergi är en överreaktion från kroppens immunförsvar mot ämnen som egentligen är ofarliga, såsom pollen, damm, djurhår, eller vissa livsmedel. När kroppen kommer i kontakt med det den är allergisk mot – det så kallade allergenet – börjar immunförsvaret bilda antikroppar och utlöser en reaktion.         
+          Vanliga symtom vid allergi är nysningar, rinnande eller täppt näsa, kliande ögon, utslag, eksem, hosta eller andningssvårigheter. Allergier kan vara säsongsbundna, som pollenallergi, eller finnas året runt, som pälsdjursallergi eller kvalsterallergi.       
+          Behandlingen varierar beroende på typ av allergi. Många klarar sig bra med receptfria antihistaminer, nässpray eller ögondroppar. I vissa fall kan läkare rekommendera allergivaccination (hyposensibilisering) för långvarig lindring. Det är också viktigt att försöka undvika kontakt med det man är allergisk mot.        
+          Allergi kan påverka livskvaliteten, men med rätt kunskap och behandling går det att leva ett aktivt och hälsosamt liv.
+        </div>
+      </div>
+    </div>
+
 
     <!--FÖRNYA RECEPT PAGE-->
     <div id="fornyarecept" class="page">
-      <h1>Förnya recept</h1>
-      <div class="text">
-        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus corrupti ab rerum, a sequi voluptas fugiat nam quis sit harum fuga qui nihil voluptatibus soluta explicabo porro quae beatae vitae.</h2>
+      <div class="text-zoom">
+        <button class="btniconbig" onclick="makeTextLarger()">
+          <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+        <button class="btniconsmall" onclick="makeTextSmaller()">
+          <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+      </div>
+      <h1 class="hemText">Förnya recept</h1>
+      <h2>Just nu är det pollen-säsong</h2>
+
+      <div class="hem">
+        <div class="infoBox text-box">
+          Våren är här, och med den kommer också den årliga pollenallergin. Många upplever just nu besvär som rinnande näsa, kliande ögon, nysningar och trötthet – typiska symptom på allergi mot björk- eller gräspollen. Pollenhalterna är redan höga i stora delar av landet, särskilt under soliga, torra och blåsiga dagar.
+          För allergiker kan det kännas som att ha en ständig förkylning, vilket påverkar både koncentration och sömn. Det finns dock hjälp att få. Receptfria läkemedel som antihistaminer, nässprayer och ögondroppar kan lindra symtomen. För den som är extra känslig kan läkare skriva ut starkare behandling eller föreslå allergivaccination.
+          För att minska besvären rekommenderas att du:
+          Undviker att vädra på morgonen när pollennivåerna är som högst
+          Håller fönster stängda under dagtid kan också hjälpa, särskilt när det är torrt och blåsigt ute. Duscha och byt kläder efter att du varit utomhus för att få bort pollen som fastnat i håret och på huden. Torka inte kläder eller sängkläder utomhus under pollensäsongen, eftersom pollen lätt fastnar i tyget.
+          Många upplever även att det hjälper att följa pollenprognoser och anpassa aktiviteter därefter. Genom att vara förberedd och ta förebyggande åtgärder kan du göra vardagen lite lättare under den här besvärliga tiden på året.
+        </div>
       </div>
     </div>
 
     <!--SKAFFA LÄKARINTYG PAGE-->
     <div id="skaffalakarintyg" class="page">
-      <h1>Skaffa läkarintyg</h1>
-      <div class="text">
-        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus corrupti ab rerum, a sequi voluptas fugiat nam quis sit harum fuga qui nihil voluptatibus soluta explicabo porro quae beatae vitae.</h2>
+      <div class="text-zoom">
+        <button class="btniconbig" onclick="makeTextLarger()">
+          <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+        <button class="btniconsmall" onclick="makeTextSmaller()">
+          <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+      </div>
+      <h1 class="hemText">Skaffa läkarintyg</h1>
+      <h2>Just nu är det pollen-säsong</h2>
+
+      <div class="hem">
+        <div class="infoBox text-box">
+          Våren är här, och med den kommer också den årliga pollenallergin. Många upplever just nu besvär som rinnande näsa, kliande ögon, nysningar och trötthet – typiska symptom på allergi mot björk- eller gräspollen. Pollenhalterna är redan höga i stora delar av landet, särskilt under soliga, torra och blåsiga dagar.
+          För allergiker kan det kännas som att ha en ständig förkylning, vilket påverkar både koncentration och sömn. Det finns dock hjälp att få. Receptfria läkemedel som antihistaminer, nässprayer och ögondroppar kan lindra symtomen. För den som är extra känslig kan läkare skriva ut starkare behandling eller föreslå allergivaccination.
+          För att minska besvären rekommenderas att du:
+          Undviker att vädra på morgonen när pollennivåerna är som högst
+          Håller fönster stängda under dagtid kan också hjälpa, särskilt när det är torrt och blåsigt ute. Duscha och byt kläder efter att du varit utomhus för att få bort pollen som fastnat i håret och på huden. Torka inte kläder eller sängkläder utomhus under pollensäsongen, eftersom pollen lätt fastnar i tyget.
+          Många upplever även att det hjälper att följa pollenprognoser och anpassa aktiviteter därefter. Genom att vara förberedd och ta förebyggande åtgärder kan du göra vardagen lite lättare under den här besvärliga tiden på året.
+        </div>
       </div>
     </div>
 
     <!--VÅRA VÅRDCENTRALER PAGE-->
     <div id="vardcentraler" class="page">
-      <h1>Våra vårdcentraler</h1>
-      <div class="text">
-        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus corrupti ab rerum, a sequi voluptas fugiat nam quis sit harum fuga qui nihil voluptatibus soluta explicabo porro quae beatae vitae.</h2>
+      <div class="text-zoom">
+        <button class="btniconbig" onclick="makeTextLarger()">
+          <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+        <button class="btniconsmall" onclick="makeTextSmaller()">
+          <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+      </div>
+      <h1 class="hemText">Våra vårdcentraler</h1>
+      <h2>Just nu är det pollen-säsong</h2>
+
+      <div class="hem">
+        <div class="infoBox text-box">
+          Våren är här, och med den kommer också den årliga pollenallergin. Många upplever just nu besvär som rinnande näsa, kliande ögon, nysningar och trötthet – typiska symptom på allergi mot björk- eller gräspollen. Pollenhalterna är redan höga i stora delar av landet, särskilt under soliga, torra och blåsiga dagar.
+          För allergiker kan det kännas som att ha en ständig förkylning, vilket påverkar både koncentration och sömn. Det finns dock hjälp att få. Receptfria läkemedel som antihistaminer, nässprayer och ögondroppar kan lindra symtomen. För den som är extra känslig kan läkare skriva ut starkare behandling eller föreslå allergivaccination.
+          För att minska besvären rekommenderas att du:
+          Undviker att vädra på morgonen när pollennivåerna är som högst
+          Håller fönster stängda under dagtid kan också hjälpa, särskilt när det är torrt och blåsigt ute. Duscha och byt kläder efter att du varit utomhus för att få bort pollen som fastnat i håret och på huden. Torka inte kläder eller sängkläder utomhus under pollensäsongen, eftersom pollen lätt fastnar i tyget.
+          Många upplever även att det hjälper att följa pollenprognoser och anpassa aktiviteter därefter. Genom att vara förberedd och ta förebyggande åtgärder kan du göra vardagen lite lättare under den här besvärliga tiden på året.
+        </div>
       </div>
     </div>
 
     <div id="skovde" class="page" style="display: none;">
-      <h1>Vårdcentral Skövde</h1>
-      <p>Information om vårdcentralen i Skövde...</p>
+      <div class="text-zoom">
+        <button class="btniconbig" onclick="makeTextLarger()">
+          <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+        <button class="btniconsmall" onclick="makeTextSmaller()">
+          <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+      </div>
+      <h1 class="hemText">Vårdcentral Skövde</h1>
+      <h2>Just nu är det pollen-säsong</h2>
+
+      <div class="hem">
+        <div class="infoBox text-box">
+          Våren är här, och med den kommer också den årliga pollenallergin. Många upplever just nu besvär som rinnande näsa, kliande ögon, nysningar och trötthet – typiska symptom på allergi mot björk- eller gräspollen. Pollenhalterna är redan höga i stora delar av landet, särskilt under soliga, torra och blåsiga dagar.
+          För allergiker kan det kännas som att ha en ständig förkylning, vilket påverkar både koncentration och sömn. Det finns dock hjälp att få. Receptfria läkemedel som antihistaminer, nässprayer och ögondroppar kan lindra symtomen. För den som är extra känslig kan läkare skriva ut starkare behandling eller föreslå allergivaccination.
+          För att minska besvären rekommenderas att du:
+          Undviker att vädra på morgonen när pollennivåerna är som högst
+          Håller fönster stängda under dagtid kan också hjälpa, särskilt när det är torrt och blåsigt ute. Duscha och byt kläder efter att du varit utomhus för att få bort pollen som fastnat i håret och på huden. Torka inte kläder eller sängkläder utomhus under pollensäsongen, eftersom pollen lätt fastnar i tyget.
+          Många upplever även att det hjälper att följa pollenprognoser och anpassa aktiviteter därefter. Genom att vara förberedd och ta förebyggande åtgärder kan du göra vardagen lite lättare under den här besvärliga tiden på året.
+        </div>
+      </div>
     </div>
 
     <!--KONTAKT PAGE-->
     <div id="kontakta" class="page">
-      <h1>Kontakta oss</h1>
-      <div class="text">
-        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus corrupti ab rerum, a sequi voluptas fugiat nam quis sit harum fuga qui nihil voluptatibus soluta explicabo porro quae beatae vitae.</h2>
+      <div class="text-zoom">
+        <button class="btniconbig" onclick="makeTextLarger()">
+          <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+        <button class="btniconsmall" onclick="makeTextSmaller()">
+          <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg" ></button>
+      </div>
+      <h1 class="hemText">Kontakta oss</h1>
+      <h2>Just nu är det pollen-säsong</h2>
+
+      <div class="hem">
+        <div class="infoBox text-box">
+          Våren är här, och med den kommer också den årliga pollenallergin. Många upplever just nu besvär som rinnande näsa, kliande ögon, nysningar och trötthet – typiska symptom på allergi mot björk- eller gräspollen. Pollenhalterna är redan höga i stora delar av landet, särskilt under soliga, torra och blåsiga dagar.
+          För allergiker kan det kännas som att ha en ständig förkylning, vilket påverkar både koncentration och sömn. Det finns dock hjälp att få. Receptfria läkemedel som antihistaminer, nässprayer och ögondroppar kan lindra symtomen. För den som är extra känslig kan läkare skriva ut starkare behandling eller föreslå allergivaccination.
+          För att minska besvären rekommenderas att du:
+          Undviker att vädra på morgonen när pollennivåerna är som högst
+          Håller fönster stängda under dagtid kan också hjälpa, särskilt när det är torrt och blåsigt ute. Duscha och byt kläder efter att du varit utomhus för att få bort pollen som fastnat i håret och på huden. Torka inte kläder eller sängkläder utomhus under pollensäsongen, eftersom pollen lätt fastnar i tyget.
+          Många upplever även att det hjälper att följa pollenprognoser och anpassa aktiviteter därefter. Genom att vara förberedd och ta förebyggande åtgärder kan du göra vardagen lite lättare under den här besvärliga tiden på året.
+        </div>
       </div>
     </div>
 
     <!--OM OSS PAGE-->
     <div id="omoss" class="page">
-      <h1>Om oss</h1>
-      <div class="text">
-        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus corrupti ab rerum, a sequi voluptas fugiat nam quis sit harum fuga qui nihil voluptatibus soluta explicabo porro quae beatae vitae.</h2>
+      <h1 class="hemText">Om oss</h1>
+      <h2>Just nu är det pollen-säsong</h2>
+
+      <div class="hem">
+        <div class="infoBox text-box">
+          Våren är här, och med den kommer också den årliga pollenallergin. Många upplever just nu besvär som rinnande näsa, kliande ögon, nysningar och trötthet – typiska symptom på allergi mot björk- eller gräspollen. Pollenhalterna är redan höga i stora delar av landet, särskilt under soliga, torra och blåsiga dagar.
+          För allergiker kan det kännas som att ha en ständig förkylning, vilket påverkar både koncentration och sömn. Det finns dock hjälp att få. Receptfria läkemedel som antihistaminer, nässprayer och ögondroppar kan lindra symtomen. För den som är extra känslig kan läkare skriva ut starkare behandling eller föreslå allergivaccination.
+          För att minska besvären rekommenderas att du:
+          Undviker att vädra på morgonen när pollennivåerna är som högst
+          Håller fönster stängda under dagtid kan också hjälpa, särskilt när det är torrt och blåsigt ute. Duscha och byt kläder efter att du varit utomhus för att få bort pollen som fastnat i håret och på huden. Torka inte kläder eller sängkläder utomhus under pollensäsongen, eftersom pollen lätt fastnar i tyget.
+          Många upplever även att det hjälper att följa pollenprognoser och anpassa aktiviteter därefter. Genom att vara förberedd och ta förebyggande åtgärder kan du göra vardagen lite lättare under den här besvärliga tiden på året.
+        </div>
       </div>
     </div>
 
@@ -239,13 +476,31 @@
       });
 
       function makeTextLarger() {
-        const box = document.getElementById("infoBox");
-        box.style.fontSize = "30px";
+        const boxes = document.querySelectorAll(".infoBox");
+        boxes.forEach(box => box.style.fontSize = "30px");
       }
 
       function makeTextSmaller() {
-        const box = document.getElementById("infoBox");
-        box.style.fontSize = "15px";
+        const boxes = document.querySelectorAll(".infoBox");
+        boxes.forEach(box => box.style.fontSize = "15px");
+      }
+
+      function showpage(pageid, lastpage){
+        var pages = document.getElementsByClassName("page");
+        for (const page of pages){
+          page.style.display = "none";
+        }
+
+        const target = document.getElementById(pageid);
+        if (target) {
+          target.style.display = "block";
+        } else {
+          console.warn("Sidan hittades inte:", pageid);
+        }
+
+        if (lastpage){
+          updateHistory(pageid);
+        }
       }
          
     </script>
