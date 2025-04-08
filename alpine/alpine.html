@@ -1,209 +1,763 @@
 <!DOCTYPE html>
 <html lang="sv">
 
-<head>
-    <title>Vårdkompassen</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <link rel="stylesheet" href="alpinestyle.css">
-</head>
+  <head>
+      <title>Vårdkompassen</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+      <link rel="stylesheet" href="alpinestyle.css">
+  </head>
 
-    <body
-        x-data="{ page: 'hem', highContrast: false }"
-        x-init="window.location.hash = ''; window.addEventListener('hashchange', () => {page = window.location.hash ? window.location.hash.substring(1) : 'hem';});"
-        x-bind:class="{ 'high-contrast': highContrast }">
+  <body
+    x-data="{ page: 'hem', highContrast: false }"
+    x-init="window.location.hash = ''; window.addEventListener('hashchange', () => {page = window.location.hash ? window.location.hash.substring(1) : 'hem';});"
+    x-bind:class="{ 'high-contrast': highContrast }">
 
-        <!-- Banner -->
-        <div id="banner">
-            <button class="btnkontrast" @click="highContrast = !highContrast">
-                <span x-text="highContrast ? 'Återställ standardvy' : 'Aktivera högkontrast'"></span>
-            </button>
-            <div class="bannertext">
-                <img class="explore" src="icons/explore_60dp_FFF_FILL0_wght400_GRAD0_opsz48.svg" />
-                <h3>Vårdkompassen</h3>
-            </div>
-            <div class="bannericon">
-                <div class="icon-container">
-                    <img class="sync" src="icons/sync_alt_56dp_FFF_FILL0_wght400_GRAD0_opsz48.svg" />
-                    <span>Personal</span>
-                </div>
-                <div class="icon-container">
-                    <img class="person" src="icons/person_56dp_FFF_FILL0_wght400_GRAD0_opsz48.svg" />
-                    <span>Logga in</span>
-                </div>
-                <div class="icon-container">
-                    <img class="search" src="icons/search_56dp_FFF_FILL0_wght400_GRAD0_opsz48.svg" />
-                    <span>Sök</span>
-                </div>
-            </div>
+    <!-- Banner -->
+    <div id="banner">
+      <button class="btnkontrast" @click="highContrast = !highContrast">
+        <span x-text="highContrast ? 'Återställ standardvy' : 'Aktivera högkontrast'"></span>
+      </button>
+      <div class="bannertext">
+        <img class="explore" src="icons/explore_60dp_FFF_FILL0_wght400_GRAD0_opsz48.svg" />
+        <h3>Vårdkompassen</h3>
+      </div>
+      <div class="bannericon">
+        <div class="icon-container">
+          <img class="sync" src="icons/sync_alt_56dp_FFF_FILL0_wght400_GRAD0_opsz48.svg" />
+          <span>Personal</span>
         </div>
-
-        <!-- Navigeringsmeny -->
-        <nav class="sidebar">
-            <button @click="window.location.hash = 'bokatid'"><img class="schedule" src="icons/schedule_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Boka tid</button>
-
-            <!-- Dropdown för bokningar -->
-            <div class="dropdown" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                <button class="dropdown-btn"><img class="calender" src="icons/calendar_month_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Bokningar ▼</button>
-                <div class="dropdown-menu" x-show="open" x-transition x-cloak>
-                    <button class="dropdown-item" @click="window.location.hash = 'sebokadetider'">Se bokningar</button>
-                    <button class="dropdown-item" @click="window.location.hash = 'avokatid'">Avboka</button>
-                </div>
-            </div>
-
-            <!-- Dropdown för olika sjukdomar -->
-            <div class="dropdown" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                <button class="dropdown-btn"><img class="microbiology" src="icons/microbiology_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Olika sjukdomar ▼</button>
-                <div class="dropdown-menu" x-show="open" x-transition x-cloak>
-                    <button class="dropdown-item" @click="window.location.hash = 'virus'">Virus</button>
-                    <button class="dropdown-item" @click="window.location.hash = 'muskelvark'">Muskelvärk</button>
-                    <button class="dropdown-item" @click="window.location.hash = 'forkylning'">Förkylning</button>
-                    <button class="dropdown-item" @click="window.location.hash = 'allergi'">Allergi</button>
-                </div>
-            </div>
-
-            <!--FÖRNYA RECEPT-->
-            <button @click="window.location.hash = 'fornyarecept'"><img class="prescriptions" src="icons/prescriptions_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Förnya recept</button>
-
-            <!--Skaffa läkarintyg-->
-            <button @click="window.location.hash = 'skaffalakarintyg'"><img class="medicalinformation" src="icons/medical_information_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Skaffa läkarintyg</button>
-
-            <!-- Dropdown för vårdcentraler -->
-            <div class="dropdown" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                <button class="dropdown-btn"><img class="addlocation" src="icons/add_location_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Våra vårdcentraler ▼</button>
-                <div class="dropdown-menu" x-show="open" x-transition x-cloak>
-                    <button class="dropdown-item" @click="window.location.hash = 'skovde'">Skövde</button>
-                    <button class="dropdown-item" @click="window.location.hash = 'goteborg'">Göteborg</button>
-                    <button class="dropdown-item" @click="window.location.hash = 'stockholm'">Stockholm</button>
-                    <button class="dropdown-item" @click="window.location.hash = 'malmo'">Malmö</button>
-                </div>
-            </div>
-
-            <!--kontakta-->
-            <button @click="window.location.hash = 'kontakta'"><img class="permphone" src="icons/perm_phone_msg_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Kontakta oss</button>
-
-            <!--om oss-->
-            <button @click="window.location.hash = 'omoss'"><img class="groups" src="icons/groups_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Om oss</button>
-        </nav>
-
-        <!-- Huvudinnehåll -->
-        <div class="contentpage">
-
-            <!-- Startsida (hem) -->
-            <div x-show="page === 'hem'" x-data="{ showDetails: false, isHighlighted: false }">
-                <div x-data="{ textSize: 16 }" class="heading-wrapper">
-                    <!-- H1 + knappar -->
-                    <div class="heading-container">
-                      <h1>Välkommen till Vårdkompassen</h1>
-                      <div class="text-zoom">
-                        <button class="btniconbig" @click=" textSize += 4">
-                          <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
-                        </button>
-                        <button class="btniconsmall" @click="textSize -= 4">
-                          <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
-                        </button>
-                      </div>
-                    </div>
-                  
-                    <!-- Själva texten -->
-                    <div id="infoBox" class="text-box" :style="`font-size: ${textSize}px`">
-                        Våren är här, och med den kommer också den årliga pollenallergin. Många upplever just nu besvär som rinnande näsa, kliande ögon, nysningar och trötthet – typiska symptom på allergi mot björk- eller gräspollen. Pollenhalterna är redan höga i stora delar av landet, särskilt under soliga, torra och blåsiga dagar.
-                        För allergiker kan det kännas som att ha en ständig förkylning, vilket påverkar både koncentration och sömn. Det finns dock hjälp att få. Receptfria läkemedel som antihistaminer, nässprayer och ögondroppar kan lindra symtomen. För den som är extra känslig kan läkare skriva ut starkare behandling eller föreslå allergivaccination.
-                        För att minska besvären rekommenderas att du:
-                        Undviker att vädra på morgonen när pollennivåerna är som högst
-                    </div>
-                </div>
-            </div>
-
-            <!-- Boka tid -->
-            <div x-show="page === 'bokatid'">
-                <div x-data="{ showDetails: false, isHighlighted: false }">
-                    <h1>Boka Tid</h1>
-
-                    <div :class="isHighlighted ? 'highlighted' : 'normal'">
-                        <p>
-                            Astma är en sjukdom som påverkar luftvägarna<br>
-                            och kan orsaka andnöd, hosta och pipande andning.
-                        </p>
-                    </div>
-
-                    <button class="btnvisa" @click="showDetails = !showDetails">
-                        <span x-text="showDetails ? 'Dölj detaljer' : 'Läs mer'"></span>
-                    </button>
-
-                    <div x-show="showDetails" x-transition x-cloak>
-                        <div class="details">
-                            <p>
-                                Astma orsakas av inflammation i luftvägarna,<br>
-                                vilket gör att luftflödet minskar.<br>
-                                Astma kan behandlas med mediciner som<br>
-                                bronkodilatorer och kortikosteroider.<br>
-                                För att lindra symtom är det viktigt att<br>
-                                undvika triggers som rökning och allergener.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div x-show="page === 'sebokadetider'">
-                <h1>Se Bokade Tider</h1>
-            </div>
-
-            <div x-show="page === 'avokatid'">
-                <h1>Avboka Tid</h1>
-            </div>
-
-            <div x-show="page === 'virus'">
-                <h1>Virus</h1>
-            </div>
-
-            <div x-show="page === 'muskelvark'">
-                <h1>Muskelvärk</h1>
-            </div>
-
-            <div x-show="page === 'forkylning'">
-                <h1>Förkylning</h1>
-            </div>
-
-            <div x-show="page === 'allergi'">
-                <h1>Allergi</h1>
-            </div>
-
-            <div x-show="page === 'fornyarecept'">
-                <h1>Förnya recept</h1>
-            </div>
-
-            <div x-show="page === 'skaffalakarintyg'">
-                <h1>Skaffa läkarintyg</h1>
-            </div>
-
-            <div x-show="page === 'skovde'">
-                <h1>Vårdcentral Skövde</h1>
-            </div>
-
-            <div x-show="page === 'goteborg'">
-                <h1>Vårdcentral Göteborg</h1>
-            </div>
-
-            <div x-show="page === 'stockholm'">
-                <h1>Vårdcentral Stockholm</h1>
-            </div>
-
-            <div x-show="page === 'malmo'">
-                <h1>Vårdcentral Malmö</h1>
-            </div>
-
-            <div x-show="page === 'kontakta'">
-                <h1>Kontakta oss</h1>
-            </div>
-
-            <div x-show="page === 'omoss'">
-                <h1>Om Oss</h1>
-            </div>
+        <div class="icon-container">
+          <img class="person" src="icons/person_56dp_FFF_FILL0_wght400_GRAD0_opsz48.svg" />
+          <span>Logga in</span>
         </div>
+        <div class="icon-container">
+          <img class="search" src="icons/search_56dp_FFF_FILL0_wght400_GRAD0_opsz48.svg" />
+          <span>Sök</span>
+        </div>
+      </div>
+    </div>
 
-    </body>
+    <!-- Navigeringsmeny -->
+    <nav class="sidebar">
+      <button @click="window.location.hash = 'bokatid'"><img class="schedule" src="icons/schedule_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Boka tid</button>
+      <!-- Dropdown för bokningar -->
+      <div class="dropdown" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+        <button class="dropdown-btn"><img class="calender" src="icons/calendar_month_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Bokningar ▼</button>
+        <div class="dropdown-menu" x-show="open" x-transition x-cloak>
+          <button class="dropdown-item" @click="window.location.hash = 'sebokadetider'">Se bokningar</button>
+          <button class="dropdown-item" @click="window.location.hash = 'avbokatid'">Avboka tid</button>
+          <button class="dropdown-item" @click="window.location.hash = 'omboka'">Boka om tid</button>
+        </div>
+      </div>
+      <!-- Dropdown för olika sjukdomar -->
+      <div class="dropdown" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+        <button class="dropdown-btn"><img class="microbiology" src="icons/microbiology_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Olika sjukdomar ▼</button>
+        <div class="dropdown-menu" x-show="open" x-transition x-cloak>
+          <button class="dropdown-item" @click="window.location.hash = 'virus'">Virus</button>
+          <button class="dropdown-item" @click="window.location.hash = 'muskelvark'">Muskelvärk</button>
+          <button class="dropdown-item" @click="window.location.hash = 'forkylning'">Förkylning</button>
+          <button class="dropdown-item" @click="window.location.hash = 'allergi'">Allergi</button>
+        </div>
+      </div>
+      <!--FÖRNYA RECEPT-->
+      <button @click="window.location.hash = 'fornyarecept'"><img class="prescriptions" src="icons/prescriptions_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Förnya recept</button>
+      <!--Skaffa läkarintyg-->
+      <button @click="window.location.hash = 'skaffalakarintyg'"><img class="medicalinformation" src="icons/medical_information_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Skaffa läkarintyg</button>
+      <!-- Dropdown för vårdcentraler -->
+      <div class="dropdown" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+        <button class="dropdown-btn"><img class="addlocation" src="icons/add_location_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Våra vårdcentraler ▼</button>
+        <div class="dropdown-menu" x-show="open" x-transition x-cloak>
+          <button class="dropdown-item" @click="window.location.hash = 'skovde'">Skövde</button>
+          <button class="dropdown-item" @click="window.location.hash = 'goteborg'">Göteborg</button>
+          <button class="dropdown-item" @click="window.location.hash = 'stockholm'">Stockholm</button>
+          <button class="dropdown-item" @click="window.location.hash = 'malmo'">Malmö</button>
+        </div>
+      </div>
+      <!-- Dropdown för kontakta -->
+      <div class="dropdown" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+        <button class="dropdown-btn"><img class="permphone" src="icons/perm_phone_msg_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Kontakta oss ▼</button>
+        <div class="dropdown-menu" x-show="open" x-transition x-cloak>
+          <button class="dropdown-item" @click="window.location.hash = 'mail'">Maila</button>
+          <button class="dropdown-item" @click="window.location.hash = 'chatta'">Chatta</button>
+          <button class="dropdown-item" @click="window.location.hash = 'telefon'">Ring oss</button>
+        </div>
+      </div>
+      <!--om oss-->
+      <button @click="window.location.hash = 'omoss'"><img class="groups" src="icons/groups_32dp_890C26_FILL0_wght400_GRAD0_opsz40.svg"/>Om oss</button>
+    </nav>
+
+    <!-- Huvudinnehåll -->
+    <div class="contentpage">
+
+      <!-- Startsida (hem) -->
+      <div x-show="page === 'hem'" x-data="{ showDetails: false, isHighlighted: false }">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Välkommen till Vårdkompassen</h1>
+              <h2>Just nu är det pollen-säsong</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Våren är här, och med den kommer också den årliga pollenallergin. Många upplever just nu besvär som rinnande näsa, kliande ögon, nysningar och trötthet – typiska symptom på allergi mot björk- eller gräspollen. Pollenhalterna är redan höga i stora delar av landet, särskilt under soliga, torra och blåsiga dagar.
+              För allergiker kan det kännas som att ha en ständig förkylning, vilket påverkar både koncentration och sömn. Det finns dock hjälp att få. Receptfria läkemedel som antihistaminer, nässprayer och ögondroppar kan lindra symtomen. För den som är extra känslig kan läkare skriva ut starkare behandling eller föreslå allergivaccination.
+              För att minska besvären rekommenderas att du:
+              Undviker att vädra på morgonen när pollennivåerna är som högst
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+
+      <!-- Boka tid -->
+      <div x-show="page === 'bokatid'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Här kan du boka tid till ditt nästa besök</h1>
+              <h2>Just nu har du inga bokade tider</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Så bokar du en tid hos Vårdkompassen digitalt<br>
+              Att boka tid hos vårdcentralen har blivit enklare än någonsin tack vare digitala tjänster. Istället för att sitta i telefonkö kan du numera logga in på din vårdcentrals webbplats eller använda en e-tjänst  för att snabbt och smidigt hitta en ledig tid.
+              För att boka digitalt behöver du först logga in med BankID på den plattform som vårdcentralen använder. Väl inloggad kan du välja vilken typ av ärende du har – exempelvis ett fysiskt besök, ett videomöte eller rådgivning. Därefter väljer du en tid som passar dig i det digitala bokningssystemet. Du får också möjlighet att beskriva dina symtom eller ditt ärende kort, vilket hjälper vårdpersonalen att förbereda sig inför mötet.
+              När du har bokat får du en bekräftelse direkt, oftast via e-post eller sms. Du kan även logga in igen senare för att ändra eller avboka tiden om det skulle behövas.
+              Digital bokning sparar tid och ger dig större frihet att hantera din vård – när det passar dig bäst.
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+      <!-- BOKNINGAR -->
+      <div x-show="page === 'bokningar'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Bokningar</h1>
+              <h2>Hur går bokningar till?</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Att boka en tid på Vårdkompassen är enkelt och smidigt. Du börjar med att logga in med BankID för att bekräfta din identitet. När du är inloggad väljer du vilken typ av besök du behöver – det kan vara ett fysiskt besök, ett videosamtal eller en rådgivning.
+              Du får sedan upp lediga tider att välja mellan och kan boka den som passar dig bäst. När bokningen är klar får du en bekräftelse direkt via e-post eller sms. Skulle du behöva ändra eller avboka din tid gör du det enkelt genom att logga in igen.      
+              Med Vårdkompassen har du full kontroll över dina bokningar – snabbt, tryggt och på dina villkor.
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+      <!-- BOKNINGAR se bokade tider -->
+      <div x-show="page === 'sebokadetider'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Här ser du dina bokade tider</h1>
+              <h2>Just nu har du inga bokade tider</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              För att boka en tid, klicka på knappen "Boka tid" i menyn.
+              Om du nyligen har gjort en bokning kan det ta några minuter innan den visas här.
+              Tveka inte att kontakta oss på Vårdkompassen om du behöver hjälp.
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+      <!-- BOKNINGAR avboka tid -->
+      <div x-show="page === 'avbokatid'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Vill du avboka en tid?</h1>
+              <h2>Just nu har du inga tider att avboka</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Så avbokar du din tid hos Vårdkompassen<br>
+              Om du inte längre kan komma på din bokade tid är det enkelt att avboka digitalt.<br>
+              Gör så här:<br>
+              Gå till sidan "Avboka tid" i menyn.<br>
+              Logga in med ditt BankID för att verifiera din identitet.<br>
+              Välj den tid du vill avboka i listan över dina bokade tider.<br>
+              Klicka på "Avboka" och bekräfta.<br>
+              Efter avbokningen får du en bekräftelse via sms eller e-post.<br>
+              Tänk på att avboka i god tid, så att tiden kan erbjudas till någon annan.
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+      <!-- BOKNINGAR bokaom tid -->
+      <div x-show="page === 'omboka'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Här kan du boka om din tid</h1>
+              <h2>Just nu har du inga tider att boka om</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Så bokar du om din tid hos vårdcentralen<br>
+              Behöver du ändra din bokade tid? Inga problem – du kan enkelt boka om digitalt.
+              Följ dessa steg:<br>          
+              Gå till sidan "Boka om tid" i menyn.<br>        
+              Logga in med BankID för att visa dina aktuella bokningar.<br>        
+              Välj den tid du vill boka om.<br>         
+              Klicka på "Boka om" och välj en ny tid som passar dig bättre.<br>         
+              Bekräfta ombokningen.<br>        
+              Du får en bekräftelse via sms eller e-post när ombokningen är klar.<br>
+              Tänk på att göra det i god tid för att öka chansen att hitta en tid som passar dig.
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+
+      <!-- OLIKA SJUKDOMAR -->
+      <div x-show="page === 'olikasjukdomar'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Olika sjukdomar</h1>
+              <h2>Vanliga hälsoproblem - vad du bör veta</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Vanliga hälsoproblem – vad du bör veta<br>
+              I vardagen kan vi drabbas av flera olika besvär, där virus, muskelvärk, allergier och förkylningar är några av de vanligaste.          
+              Virus är små smittsamma partiklar som kan orsaka allt från milda infektioner till allvarliga sjukdomar. Exempel är influensa, magsjuka och förkylningar. De sprids lätt mellan människor, särskilt i miljöer där många vistas nära varandra.         
+              Muskelvärk uppstår ofta efter fysisk ansträngning, stress eller stillasittande, men kan också bero på infektioner. Värken känns ofta som stelhet, ömhet eller molande smärta, och går vanligtvis över av sig själv med vila och återhämtning.         
+              Allergi är en reaktion från kroppens immunförsvar mot ämnen som egentligen är ofarliga, som pollen, pälsdjur eller damm. Vanliga symtom är nysningar, rinnsnuva, kliande ögon och trötthet. Allergi kan behandlas med receptfria läkemedel och i vissa fall med vaccination.        
+              Förkylning är en vanlig virusinfektion som ger symtom som halsont, hosta, snuva och trötthet. Den går oftast över av sig själv inom en till två veckor. Vila och mycket vätska brukar vara den bästa behandlingen.       
+              Genom att känna igen symtomen och veta hur man lindrar dem kan du bättre ta hand om din hälsa i vardagen.
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+      <!-- OLIKA SJUKDOMAR virus -->
+      <div x-show="page === 'virus'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Virus</h1>
+              <h2>På denna sida kan du läsa om olika typer av virus</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Virus är små smittsamma partiklar som kan orsaka allt från milda förkylningar till allvarliga 
+              sjukdomar. Några vanliga virus är influensavirus, som ger säsongsinfluensa med feber och muskelvärk, samt 
+              rhinovirus som är den vanligaste orsaken till förkylning. Coronavirus, som bland annat inkluderar covid-19,
+              kan orsaka luftvägsinfektioner i varierande grad. Maginfluensa orsakas ofta av norovirus, vilket ger illamående,
+              kräkningar och diarré. Virus sprids lätt genom hosta, nysningar eller kontakt med smittade ytor – därför är god 
+              handhygien och vaccination viktiga skydd.
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+      <!-- OLIKA SJUKDOMAR muskelvärk -->
+      <div x-show="page === 'muskelvark'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Muskelvärk</h1>
+              <h2>På denna sida kan du läsa om muskelvärk</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Vad är muskelvärk?<br>
+              Muskelvärk är ett vanligt tillstånd som kan drabba vem som helst, oavsett ålder eller fysisk kondition. Värken kan kännas som en molande, stel eller öm känsla i en eller flera muskelgrupper, ofta efter fysisk ansträngning, stress eller långvarig stillasittande. Vanliga orsaker till muskelvärk är träning, felaktig kroppshållning, sömnbrist eller spänningar på grund av stress. Ibland kan muskelvärk också uppstå vid infektioner eller sjukdomar som influensa.
+              För att lindra muskelvärk kan det hjälpa att vila, värma det ömma området, stretcha försiktigt eller ta receptfria smärtstillande läkemedel. Om värken håller i sig länge, förvärras eller kommer utan tydlig anledning, bör man kontakta vården för vidare utredning.
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+      <!-- OLIKA SJUKDOMAR förkylning -->
+      <div x-show="page === 'forkylning'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Förkylning</h1>
+              <h2>På denna sida kan du läsa vad du kan tänka på vid förkylning</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Vad är förkylning<br>
+              Förkylning är en av de vanligaste infektionerna i luftvägarna och orsakas av virus. Den sprids lätt genom direktkontakt eller via luften när någon nyser eller hostar. Symtomen börjar oftast med halsont, följt av nästäppa, rinnsnuva, nysningar och hosta. Man kan även känna sig trött, få huvudvärk eller en lätt feber.          
+              Förkylningar går i regel över av sig själva inom en till två veckor och kräver sällan medicinsk behandling. För att lindra symtomen rekommenderas vila, mycket vätska och receptfria läkemedel som febernedsättande eller nässpray. Det är också bra att tvätta händerna ofta för att undvika att smitta andra.
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+      <!-- OLIKA SJUKDOMAR allergi -->
+      <div x-show="page === 'allergi'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Allergi</h1>
+              <h2>På denna sida kan du läsa om allergi</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Vad är allergi?<br>
+              Allergi är en överreaktion från kroppens immunförsvar mot ämnen som egentligen är ofarliga, såsom pollen, damm, djurhår, eller vissa livsmedel. När kroppen kommer i kontakt med det den är allergisk mot – det så kallade allergenet – börjar immunförsvaret bilda antikroppar och utlöser en reaktion.         
+              Vanliga symtom vid allergi är nysningar, rinnande eller täppt näsa, kliande ögon, utslag, eksem, hosta eller andningssvårigheter. Allergier kan vara säsongsbundna, som pollenallergi, eller finnas året runt, som pälsdjursallergi eller kvalsterallergi.       
+              Behandlingen varierar beroende på typ av allergi. Många klarar sig bra med receptfria antihistaminer, nässpray eller ögondroppar. I vissa fall kan läkare rekommendera allergivaccination (hyposensibilisering) för långvarig lindring. Det är också viktigt att försöka undvika kontakt med det man är allergisk mot.        
+              Allergi kan påverka livskvaliteten, men med rätt kunskap och behandling går det att leva ett aktivt och hälsosamt liv.
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+
+      <!-- FÖRNYA RECEPT -->
+      <div x-show="page === 'fornyarecept'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Förnya recept</h1>
+              <h2>Vi hjälper dig förnya ditt recept</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Att förnya ett recept via Vårdkompassen är enkelt och smidigt. Du loggar bara in med ditt BankID på vår plattform, går till sidan "Förnya recept", och väljer det läkemedel du vill förnya. Du kan även lämna en kommentar till vårdpersonalen om du har frågor eller vill förklara varför du behöver en ny förskrivning.
+              Efter att din begäran skickats in granskas den av en läkare. När receptet är godkänt skickas det elektroniskt till ditt valda apotek, och du får en bekräftelse via sms eller e-post. I vissa fall kan vårdpersonalen behöva kontakta dig innan receptet kan förnyas.         
+              Tjänsten är tillgänglig dygnet runt – så att du kan hantera dina recept när det passar dig bäst.
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+
+      <!-- LÄKARINTYG -->
+      <div x-show="page === 'skaffalakarintyg'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Skaffa läkarintyg</h1>
+              <h2>Vi hjälper dig att skaffa läkarintyg</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              I vissa situationer kan du behöva ett läkarintyg – till exempel vid sjukskrivning, förlängd sjukfrånvaro, ansökan om anpassningar i arbete eller skola, eller inför en resa. Att skaffa ett läkarintyg är enkelt hos oss på årdkompassen.<br>
+              Börja med att boka en tid hos någon av våra vårdcentraler, antingen för ett fysiskt besök eller ett videomöte. Under samtalet går du igenom dina besvär eller behov med läkaren, som därefter bedömer om ett intyg kan utfärdas. I vissa fall kan du behöva komplettera med prover eller undersökningar.<br>
+              När intyget är klart får du det antingen direkt i handen, via e-post, eller genom att logga in på Vårdkompassen. Läkarintyget kan du sedan själv skicka till din arbetsgivare, skola eller annan instans som begärt det.<br>
+              Kom ihåg att vara ute i god tid, särskilt om intyget behövs inför en deadline – och att alltid ta med legitimation vid ditt besök.
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+
+      <!-- VÅRA VÅRDCENTRALER -->
+      <div x-show="page === 'vardcentraler'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Våra vårdcentraler</h1>
+              <h2>Våra vårdcentraler i Sverige</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Vårdkompassen finns tillgänglig på flera platser i landet för att du enkelt ska kunna få den vård du behöver. Vi har fyra vårdcentraler runt om i Sverige:<br>          
+              Skövde<br>        
+              Göteborg<br>       
+              Stockholm<br>    
+              Malmö<br>         
+              Oavsett vilken vårdcentral du väljer är vårt mål detsamma – att ge dig trygg och tillgänglig vård med hög kvalitet. Du kan enkelt boka tid, förnya recept eller kontakta oss digitalt via vår hemsida, oavsett var du befinner dig.<br>          
+              Vi ser fram emot att få hjälpa dig, var du än är! 💙
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+      <!-- VÅRA VÅRDCENTRALER skövde -->
+      <div x-show="page === 'skovde'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Vårdkompassen i Skövde</h1>
+              <h2>Adress: Skövdevägen 1</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Välkommen till Vårdkompassen i Skövde – din lokala vårdcentral med fokus på trygghet, tillgänglighet och personlig vård. Vi är en modern och pålitlig vårdcentral som erbjuder både fysiska och digitala vårdmöten anpassade efter dina behov.<br>
+              Hos oss kan du få hjälp med allt från förkylningar och allergier till receptförnyelse och läkarintyg. Vi har erfarna sjuksköterskor, läkare och annan vårdpersonal som jobbar tillsammans för att ge dig bästa möjliga vård.<br>
+              Vi finns centralt i Skövde och har generösa öppettider för att du enkelt ska kunna boka en tid som passar dig. Du kan boka besök via vår webbplats, logga in med BankID och få snabb kontakt med vården – utan långa telefonköer.<br>  
+              På Vårdkompassen i Skövde sätter vi patienten i centrum. Vår ambition är att du ska känna dig sedd, hörd och väl omhändertagen.<br>         
+              Varmt välkommen in till oss!
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+      <!-- VÅRA VÅRDCENTRALER göteborg -->
+      <div x-show="page === 'goteborg'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Vårdkompassen i Göteborg</h1>
+              <h2>Adress: Göteborgsvägen 1</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Välkommen till Vårdkompassen i Göteborg – din lokala vårdcentral med fokus på trygghet, tillgänglighet och personlig vård. Vi är en modern och pålitlig vårdcentral som erbjuder både fysiska och digitala vårdmöten anpassade efter dina behov.<br>
+              Hos oss kan du få hjälp med allt från förkylningar och allergier till receptförnyelse och läkarintyg. Vi har erfarna sjuksköterskor, läkare och annan vårdpersonal som jobbar tillsammans för att ge dig bästa möjliga vård.<br>
+              Vi finns centralt i Göteborg och har generösa öppettider för att du enkelt ska kunna boka en tid som passar dig. Du kan boka besök via vår webbplats, logga in med BankID och få snabb kontakt med vården – utan långa telefonköer.<br>  
+              På Vårdkompassen i Göteborg sätter vi patienten i centrum. Vår ambition är att du ska känna dig sedd, hörd och väl omhändertagen.<br>         
+              Varmt välkommen in till oss!
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+      <!-- VÅRA VÅRDCENTRALER stockholm -->
+      <div x-show="page === 'stockholm'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Vårdkompassen i Stockholm</h1>
+              <h2>Adress: Stockholmsvägen 1</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Välkommen till Vårdkompassen i Stockholm – din lokala vårdcentral med fokus på trygghet, tillgänglighet och personlig vård. Vi är en modern och pålitlig vårdcentral som erbjuder både fysiska och digitala vårdmöten anpassade efter dina behov.<br>
+              Hos oss kan du få hjälp med allt från förkylningar och allergier till receptförnyelse och läkarintyg. Vi har erfarna sjuksköterskor, läkare och annan vårdpersonal som jobbar tillsammans för att ge dig bästa möjliga vård.<br>
+              Vi finns centralt i Stockholm och har generösa öppettider för att du enkelt ska kunna boka en tid som passar dig. Du kan boka besök via vår webbplats, logga in med BankID och få snabb kontakt med vården – utan långa telefonköer.<br>  
+              På Vårdkompassen i Stockholm sätter vi patienten i centrum. Vår ambition är att du ska känna dig sedd, hörd och väl omhändertagen.<br>         
+              Varmt välkommen in till oss!
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+      <!-- VÅRA VÅRDCENTRALER malmö -->
+      <div x-show="page === 'malmo'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Vårdkompassen i Malmö</h1>
+              <h2>Adress: Malmösvägen 1</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Välkommen till Vårdkompassen i Malmö – din lokala vårdcentral med fokus på trygghet, tillgänglighet och personlig vård. Vi är en modern och pålitlig vårdcentral som erbjuder både fysiska och digitala vårdmöten anpassade efter dina behov.<br>
+              Hos oss kan du få hjälp med allt från förkylningar och allergier till receptförnyelse och läkarintyg. Vi har erfarna sjuksköterskor, läkare och annan vårdpersonal som jobbar tillsammans för att ge dig bästa möjliga vård.<br>
+              Vi finns centralt i Malmö och har generösa öppettider för att du enkelt ska kunna boka en tid som passar dig. Du kan boka besök via vår webbplats, logga in med BankID och få snabb kontakt med vården – utan långa telefonköer.<br>  
+              På Vårdkompassen i Malmö sätter vi patienten i centrum. Vår ambition är att du ska känna dig sedd, hörd och väl omhändertagen.<br>         
+              Varmt välkommen in till oss!
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+
+      <!-- KONTAKT -->
+      <div x-show="page === 'kontakta'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Kontakta oss</h1>
+              <h2>Via telefon, chatt eller mail</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Kontakta oss<br>
+              Har du frågor, behöver rådgivning eller vill boka tid? Vi på Vårdkompassen finns här för dig och du kan enkelt komma i kontakt med oss på det sätt som passar dig bäst:<br>       
+              📞 Telefon<br>
+              Ring oss för att prata direkt med en sjuksköterska eller administratör. Vi svarar gärna på dina frågor och hjälper dig att hitta rätt vård.<br> 
+              💬 Chatt<br>
+              Använd vår chattfunktion för snabb och smidig kontakt. Du får hjälp direkt av vår personal, oavsett om du har ett enkelt ärende eller behöver rådgivning.<br>
+              📧 Mail<br>
+              Skicka ett mejl till oss om du har frågor som inte är brådskande. Vi återkommer så fort vi kan, oftast inom 24 timmar på vardagar.<br>
+              Vi finns här för att göra din kontakt med vården enkel och trygg – hör av dig när du behöver oss!
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+      <!-- KONTAKT mail -->
+      <div x-show="page === 'mail'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Maila oss</h1>
+              <h2>Vardkompassen@gmail.com</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Du kan enkelt kontakta oss via mail om ditt ärende inte är brådskande. Skriv din fråga eller beskriv ditt ärende, så återkommer vi så snart som möjligt – oftast inom 24 timmar på vardagar. Mail är ett smidigt sätt att få hjälp i lugn och ro.
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+      <!-- KONTAKT chatta -->
+      <div x-show="page === 'chatta'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Chatta med oss</h1>
+              <h2>Chatt mellan 07.00-18.00</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Via vår chatt får du snabb hjälp direkt från vår personal. Tjänsten är bemannad under vardagar mellan kl. 07.00 och 18.00. Du kan ställa frågor, få rådgivning eller hjälp med bokningar – allt i realtid. Perfekt när du vill ha svar snabbt utan att ringa!
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+      <!-- KONTAKT telefon -->
+      <div x-show="page === 'telefon'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Ring oss på nummer 0707070707</h1>
+              <h2>Du når oss mellan 07.00-18-00</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Du kan alltid nå oss via telefon för rådgivning, tidsbokning eller andra frågor. Våra telefontider är vardagar mellan kl. 07.00 och 18.00. När du ringer får du prata direkt med vår kunniga personal som hjälper dig vidare utifrån ditt ärende.
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+
+      <!-- OM OSS -->
+      <div x-show="page === 'omoss'">
+        <div x-data="{ textSize: 16 }" class="heading-wrapper">
+          <div class="heading-container">
+            <div class="heading-text">
+              <h1>Om oss</h1>
+              <h2>Vilka är vi på Vårdkompassen?</h2>
+            </div>
+            <div class="text-zoom">
+              <button class="btniconbig" @click=" textSize += 4">
+                <img src="icons/zoom_in_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+              <button class="btniconsmall" @click="textSize -= 4">
+                <img src="icons/zoom_out_24dp_FFF_FILL0_wght400_GRAD0_opsz24.svg">
+              </button>
+            </div>
+          </div>
+          <div class="content-box" :style="`font-size: ${textSize}px`">
+            <div class="infoBox text-box">
+              Vårdkompassen är en digital vårdtjänst som gör det enkelt för dig att få kontakt med vården – när det passar dig. Vi brinner för att göra vården tillgänglig, trygg och smidig för alla. Genom vår plattform kan du boka tider, förnya recept, läsa om vanliga sjukdomar och få hjälp via telefon, chatt eller mail.<br>
+              Bakom Vårdkompassen finns ett team av legitimerad vårdpersonal, tekniker och administratörer som tillsammans arbetar för att ge dig bästa möjliga service – oavsett om du bor i Skövde, Göteborg, Stockholm eller Malmö. Vi kombinerar modern teknik med personlig omsorg, och sätter alltid patientens behov i första rummet.
+            </div>
+            <img id="bild" src="icons/IMG_2878.PNG">
+          </div>
+        </div>
+      </div>
+      
+
+  </body>
 
 </html>
